@@ -1,6 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const fetch = require('node-fetch');
 const path = require('path');
+const session = require('express-session');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const countries = require('./data/countries');
 
 const app = express();
@@ -12,6 +16,35 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'hx-weather-dev-secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 24 * 60 * 60 * 1000 } // 24 hours
+}));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Google OAuth strategy
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.CALLBACK_URL || 'http://localhost:3000/auth/google/callback'
+}, (accessToken, refreshToken, profile, done) => {
+  const user = {
+    id: profile.id,
+    name: profile.displayName,
+    photo: profile.photos?.[0]?.value || null
+  };
+  return done(null, user);
+}));
+
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
 
 // WMO Weather Code descriptions and emoji
 const weatherCodes = {
@@ -52,21 +85,18 @@ async function fetchWeather(lat, lon) {
   const data = await response.json();
 
   const current = data.current_weather;
-  const currentTime = current.time; // e.g. "2026-03-06T14:00"
+  const currentTime = current.time;
 
-  // Find closest hour index in hourly data
   const hourlyTimes = data.hourly.time;
   const hourlyPrecip = data.hourly.precipitation_probability;
   let precipIndex = hourlyTimes.findIndex(t => t === currentTime);
   if (precipIndex === -1) {
-    // Fallback: find closest time
     precipIndex = hourlyTimes.reduce((best, t, i) => {
       return Math.abs(new Date(t) - new Date(currentTime)) <
              Math.abs(new Date(hourlyTimes[best]) - new Date(currentTime)) ? i : best;
     }, 0);
   }
   const precipProbability = hourlyPrecip[precipIndex] ?? 0;
-
   const weatherInfo = getWeatherInfo(current.weathercode);
 
   return {
@@ -78,27 +108,45 @@ async function fetchWeather(lat, lon) {
   };
 }
 
-// Home / index route
-app.get('/', (req, res) => {
-  res.render('index', { countries });
+// ===========================
+// Auth routes
+// ===========================
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] })
+);
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => res.redirect('/')
+);
+
+app.get('/logout', (req, res) => {
+  req.logout(() => res.redirect('/'));
 });
 
-// Individual country weather routes
+// ===========================
+// App routes
+// ===========================
+app.get('/', (req, res) => {
+  res.render('index', { countries, user: req.user || null });
+});
+
 app.get('/weather/:slug', async (req, res) => {
   const { slug } = req.params;
   const country = countries.find(c => c.slug === slug);
 
   if (!country) {
-    return res.status(404).render('404', { message: 'Country not found' });
+    return res.status(404).send('<h1>404 – Page not found</h1><p><a href="/">Back to home</a></p>');
   }
 
   try {
     const weather = await fetchWeather(country.lat, country.lon);
-    res.render('weather', { country, weather });
+    res.render('weather', { country, weather, user: req.user || null });
   } catch (err) {
     console.error(`Weather fetch failed for ${country.country}:`, err.message);
     res.status(500).render('error', {
       country,
+      user: req.user || null,
       message: 'Unable to load live weather data right now. Please try again in a moment.'
     });
   }

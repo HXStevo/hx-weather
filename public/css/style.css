@@ -110,6 +110,63 @@ img {
 }
 
 /* ===========================
+   Auth — Sign in / User chip
+   =========================== */
+.nav-signin {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--white) !important;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 50px;
+  padding: 0.35rem 0.9rem;
+  text-decoration: none !important;
+  transition: border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.nav-signin:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.1);
+}
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--white);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-signout {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65) !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.nav-signout:hover {
+  color: var(--white) !important;
+}
+
+/* ===========================
    Index Hero
    =========================== */
 .index-hero {
