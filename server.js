@@ -113,9 +113,23 @@ async function fetchWeather(lat, lon) {
 // ===========================
 // Auth routes
 // ===========================
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile'] })
-);
+
+// Debug endpoint — remove after confirming auth works
+app.get('/auth/status', (req, res) => {
+  res.json({
+    clientIdSet: !!process.env.GOOGLE_CLIENT_ID,
+    clientSecretSet: !!process.env.GOOGLE_CLIENT_SECRET,
+    callbackUrl: process.env.CALLBACK_URL || '(not set)',
+    strategyRegistered: !!passport._strategy('google')
+  });
+});
+
+app.get('/auth/google', (req, res, next) => {
+  if (!passport._strategy('google')) {
+    return res.status(503).send('Google auth is not configured. Check environment variables.');
+  }
+  passport.authenticate('google', { scope: ['profile'] })(req, res, next);
+});
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
