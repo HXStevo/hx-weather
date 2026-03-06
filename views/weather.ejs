@@ -15,7 +15,7 @@
   <%- include('partials/header', { user }) %>
 
   <!-- Hero -->
-  <section class="weather-hero">
+  <section class="weather-hero<% if (heroImage) { %> weather-hero--photo<% } %>"<% if (heroImage) { %> style="--hero-img: url('<%- heroImage %>')"<% } %>>
     <div class="container">
       <p class="hero-eyebrow">Live weather</p>
       <h1>Weather in <%= country.country %> today</h1>

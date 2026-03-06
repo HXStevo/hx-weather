@@ -81,6 +81,21 @@ function getWeatherInfo(code) {
   return weatherCodes[code] || { label: 'Unknown', emoji: '🌡️' };
 }
 
+async function fetchCountryImage(capital, countryName) {
+  const tryFetch = async (term) => {
+    try {
+      const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(term)}`;
+      const res = await fetch(url, { headers: { 'User-Agent': 'hx-weather/1.0 (holidayextras.com)' } });
+      if (!res.ok) return null;
+      const data = await res.json();
+      return data.originalimage?.source || data.thumbnail?.source || null;
+    } catch {
+      return null;
+    }
+  };
+  return (await tryFetch(capital)) || (await tryFetch(countryName)) || null;
+}
+
 async function fetchWeather(lat, lon) {
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=precipitation_probability&timezone=auto`;
   const response = await fetch(url);
@@ -160,8 +175,11 @@ app.get('/weather/:slug', async (req, res) => {
   }
 
   try {
-    const weather = await fetchWeather(country.lat, country.lon);
-    res.render('weather', { country, weather, user: req.user || null });
+    const [weather, heroImage] = await Promise.all([
+      fetchWeather(country.lat, country.lon),
+      fetchCountryImage(country.capital, country.country)
+    ]);
+    res.render('weather', { country, weather, heroImage, user: req.user || null });
   } catch (err) {
     console.error(`Weather fetch failed for ${country.country}:`, err.message);
     res.status(500).render('error', {
