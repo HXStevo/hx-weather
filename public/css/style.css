@@ -140,6 +140,33 @@ img {
   width: 26px;
   height: auto;
   border-radius: 2px;
+  vertical-align: middle;
+}
+
+.hxh-flag-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Small flag icons inside the country dropdown */
+.hxh-flag-img--sm {
+  width: 18px;
+  height: auto;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 0.3rem;
+}
+
+/* Country dropdown — align to right edge of flag button */
+.hxh-flag-dropdown {
+  left: auto;
+  right: 0;
+}
+
+.hxh-flag-dropdown .hxh-dropdown__col a {
+  display: flex;
+  align-items: center;
 }
 
 /* ---- Dropdown menus ---- */
@@ -276,59 +303,104 @@ img {
   display: block;
 }
 
-/* Signed-in user chip */
+/* Signed-in user button + dropdown */
 .hxh-user {
+  position: relative;
+}
+
+.hxh-user__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* The "SH ∨" label row */
+.hxh-user__label {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 0.15rem;
-  padding: 0.3rem 0.6rem;
-}
-
-.hxh-user__avatar {
-  display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-.hxh-user__photo {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  object-fit: cover;
-}
-
-.hxh-user__init {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hxh-user__name {
-  color: #fff;
+.hxh-user__initials {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.02em;
 }
 
-.hxh-user__signout {
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.65rem;
+/* User dropdown panel */
+.hxh-user-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  min-width: 220px;
+  z-index: 200;
+  overflow: hidden;
+}
+
+.hxh-user:hover .hxh-user-dropdown {
+  display: block;
+}
+
+.hxh-user-dropdown__hello {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+  padding: 1rem 1.25rem 0.85rem;
+  margin: 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.hxh-user-dropdown__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hxh-user-dropdown__links li {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.hxh-user-dropdown__links li:last-child {
+  border-bottom: none;
+}
+
+.hxh-user-dropdown__links a {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: #1a79cb;
+  font-size: 0.95rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: background 0.12s;
+}
+
+.hxh-user-dropdown__links a:hover {
+  background: #f5f8ff;
+  text-decoration: underline;
+}
+
+.hxh-user-dropdown__footer {
+  border-top: 2px solid #e8e8e8;
+  padding: 0.6rem 1.25rem;
+}
+
+.hxh-user-dropdown__signout {
+  color: #666;
+  font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
 }
 
-.hxh-user__signout:hover {
-  color: #fff;
-  text-decoration: none;
+.hxh-user-dropdown__signout:hover {
+  color: #333;
+  text-decoration: underline;
 }
 
 /* ---- Mobile: hide top bar, compact utils ---- */
@@ -355,8 +427,7 @@ img {
   }
 
   .hxh-util-btn span,
-  .hxh-user__name,
-  .hxh-user__signout {
+  .hxh-user__label {
     display: none;
   }
 }
