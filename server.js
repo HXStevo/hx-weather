@@ -8,6 +8,26 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const countries = require('./data/countries');
 
+// Locale support
+const locales = {
+  en: require('./locales/en'),
+  de: require('./locales/de'),
+  fr: require('./locales/fr'),
+  es: require('./locales/es'),
+  it: require('./locales/it'),
+};
+const SUPPORTED_LANGS = ['de', 'fr', 'es', 'it'];
+const BASE_URL = process.env.BASE_URL || 'https://web-production-17f8.up.railway.app';
+
+function buildAlternates(englishSlug) {
+  const alts = [{ lang: 'en', href: `${BASE_URL}/weather/${englishSlug}` }];
+  SUPPORTED_LANGS.forEach(lang => {
+    const c = locales[lang].countries[englishSlug];
+    if (c) alts.push({ lang, href: `${BASE_URL}/weather/${lang}/${c.slug}` });
+  });
+  return alts;
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -122,7 +142,8 @@ async function fetchWeather(lat, lon) {
     condition: weatherInfo.label,
     emoji: weatherInfo.emoji,
     windSpeed: Math.round(current.windspeed),
-    precipProbability
+    precipProbability,
+    wmoCode: current.weathercode,
   };
 }
 
@@ -179,13 +200,67 @@ app.get('/weather/:slug', async (req, res) => {
       fetchWeather(country.lat, country.lon),
       fetchCountryImage(country.capital, country.country)
     ]);
-    res.render('weather', { country, weather, heroImage, user: req.user || null });
+    res.render('weather', {
+      country, weather, heroImage,
+      lang: 'en',
+      t: locales.en.ui,
+      alternates: buildAlternates(slug),
+      user: req.user || null,
+    });
   } catch (err) {
     console.error(`Weather fetch failed for ${country.country}:`, err.message);
     res.status(500).render('error', {
       country,
       user: req.user || null,
       message: 'Unable to load live weather data right now. Please try again in a moment.'
+    });
+  }
+});
+
+// Multilingual weather pages: /weather/:lang/:localSlug
+app.get('/weather/:lang/:localSlug', async (req, res) => {
+  const { lang, localSlug } = req.params;
+
+  if (!SUPPORTED_LANGS.includes(lang)) {
+    return res.status(404).send('<h1>404 – Page not found</h1><p><a href="/">Back to home</a></p>');
+  }
+
+  const locale = locales[lang];
+  const englishSlug = Object.keys(locale.countries).find(
+    k => locale.countries[k].slug === localSlug
+  );
+
+  if (!englishSlug) {
+    return res.status(404).send('<h1>404 – Page not found</h1><p><a href="/">Back to home</a></p>');
+  }
+
+  const baseCountry = countries.find(c => c.slug === englishSlug);
+  const localCountry = locale.countries[englishSlug];
+
+  try {
+    const [weather, heroImage] = await Promise.all([
+      fetchWeather(baseCountry.lat, baseCountry.lon),
+      fetchCountryImage(localCountry.capital, localCountry.country),
+    ]);
+
+    const translatedCondition = locale.wmo[weather.wmoCode] || weather.condition;
+    const localWeather = { ...weather, condition: translatedCondition };
+
+    res.render('weather', {
+      country: { ...baseCountry, ...localCountry },
+      weather: localWeather,
+      heroImage,
+      lang,
+      t: locale.ui,
+      alternates: buildAlternates(englishSlug),
+      user: req.user || null,
+    });
+  } catch (err) {
+    console.error(`Weather fetch failed for ${localCountry.country}:`, err.message);
+    res.status(500).render('error', {
+      country: { ...baseCountry, ...localCountry },
+      user: req.user || null,
+      message: 'Unable to load live weather data right now. Please try again in a moment.',
     });
   }
 });

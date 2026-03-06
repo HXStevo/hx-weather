@@ -1,0 +1,24 @@
+// English UI strings — used by /weather/:slug so weather.ejs always has a `t` object
+module.exports = {
+  lang: 'en',
+  ui: {
+    liveWeather:           'Live weather',
+    weatherIn:             'Weather in',
+    weatherInSuffix:       'today',
+    showingConditionsFor:  '📍 Showing conditions for',
+    temperature:           'Temperature',
+    rainChance:            'Rain chance',
+    windSpeed:             'Wind speed',
+    updatedLive:           'Updated live on every page load',
+    aboutWeatherIn:        'About the weather in',
+    bestTimeToVisit:       'Best time to visit',
+    whatToPack:            'What to pack',
+    readyToBook:           'Ready to book your trip to',
+    readyToBookSuffix:     '?',
+    findAirportHotels:     'Find Airport Hotels for',
+    findAirportHotelsSuffix: ' →',
+    lessHassle:            'Less hassle. More holiday.',
+    footerText:            `© Holiday Extras ${new Date().getFullYear()}. Weather data provided by`,
+    footerOpenMeteo:       'Open-Meteo',
+  }
+};
