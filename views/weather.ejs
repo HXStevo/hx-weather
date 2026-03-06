@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= country.metaTitle %></title>
+  <meta name="description" content="<%= country.metaDescription %>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">Holiday Extras</a>
+      <nav class="site-nav">
+        <a href="/">← All destinations</a>
+        <a href="https://www.holidayextras.com" target="_blank" rel="noopener">holidayextras.com</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="weather-hero">
+    <div class="container">
+      <p class="hero-eyebrow">Live weather</p>
+      <h1>Weather in <%= country.country %> today</h1>
+      <p class="hero-location">📍 Showing conditions for <%= country.capital %></p>
+    </div>
+  </section>
+
+  <!-- Weather Snapshot -->
+  <section class="weather-snapshot-section">
+    <div class="container">
+      <div class="weather-card">
+        <div class="weather-emoji"><%= weather.emoji %></div>
+        <div class="weather-condition"><%= weather.condition %></div>
+        <div class="weather-stats">
+          <div class="weather-stat">
+            <span class="stat-value"><%= weather.temperature %>°C</span>
+            <span class="stat-label">Temperature</span>
+          </div>
+          <div class="weather-stat-divider"></div>
+          <div class="weather-stat">
+            <span class="stat-value"><%= weather.precipProbability %>%</span>
+            <span class="stat-label">Rain chance</span>
+          </div>
+          <div class="weather-stat-divider"></div>
+          <div class="weather-stat">
+            <span class="stat-value"><%= weather.windSpeed %> km/h</span>
+            <span class="stat-label">Wind speed</span>
+          </div>
+        </div>
+        <p class="weather-updated">Updated live on every page load</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Content -->
+  <section class="content-section">
+    <div class="container content-inner">
+
+      <div class="content-block">
+        <h2>About the weather in <%= country.country %></h2>
+        <p><%= country.seoIntro %></p>
+      </div>
+
+      <div class="content-grid">
+        <div class="content-tile">
+          <div class="tile-icon">🗓️</div>
+          <h3>Best time to visit</h3>
+          <p><%= country.bestTimeToVisit %></p>
+        </div>
+        <div class="content-tile">
+          <div class="tile-icon">🎒</div>
+          <h3>What to pack</h3>
+          <p><%= country.packingTips %></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container cta-inner">
+      <h2>Ready to book your trip to <%= country.country %>?</h2>
+      <p>Less hassle. More holiday.</p>
+      <a href="<%= country.ctaUrl %>" class="cta-button" target="_blank" rel="noopener">
+        <%= country.ctaLabel %> →
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© Holiday Extras <%= new Date().getFullYear() %>. Weather data provided by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Guides | Holiday Extras</title>
+  <meta name="description" content="Live weather guides for popular holiday destinations. Check today's conditions and plan your perfect trip with Holiday Extras." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">Holiday Extras</a>
+      <nav class="site-nav">
+        <a href="https://www.holidayextras.com" target="_blank" rel="noopener">holidayextras.com</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="index-hero">
+    <div class="container">
+      <h1>Weather Guides</h1>
+      <p class="hero-sub">Live weather for popular holiday destinations — plan your trip with confidence.</p>
+    </div>
+  </section>
+
+  <!-- Country Grid -->
+  <main class="container index-main">
+    <div class="country-grid">
+      <% countries.forEach(c => { %>
+        <a href="/weather/<%= c.slug %>" class="country-card">
+          <div class="country-card-inner">
+            <h2 class="country-name"><%= c.country %></h2>
+            <p class="country-capital">📍 <%= c.capital %></p>
+            <span class="country-cta">Check weather →</span>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© Holiday Extras <%= new Date().getFullYear() %>. Weather data provided by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

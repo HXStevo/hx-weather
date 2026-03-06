@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Unavailable | Holiday Extras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">Holiday Extras</a>
+      <nav class="site-nav">
+        <a href="/">← All destinations</a>
+      </nav>
+    </div>
+  </header>
+  <section class="weather-hero">
+    <div class="container">
+      <h1>Weather in <%= country.country %></h1>
+    </div>
+  </section>
+  <main class="container" style="padding: 3rem 1.5rem; text-align: center;">
+    <p style="font-size: 3rem;">🌩️</p>
+    <h2>Weather data unavailable</h2>
+    <p style="color: #555; max-width: 480px; margin: 1rem auto;"><%= message %></p>
+    <a href="/" class="cta-button" style="display:inline-block; margin-top:1.5rem;">← Back to all destinations</a>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© Holiday Extras <%= new Date().getFullYear() %></p>
+    </div>
+  </footer>
+</body>
+</html>
