@@ -1,32 +1,208 @@
-<header class="site-header">
-  <div class="container">
-    <div class="header-top">
-      <!-- Logo -->
-      <a href="/" class="logo">
-        <img src="https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/images/logos/HolidayExtras-logo-horizontal-transparent.svg"
-             alt="Holiday Extras"
-             height="38" />
-      </a>
+<nav class="hxh-nav" role="navigation">
+  <div class="hxh-inner">
 
-      <!-- Main nav -->
-      <nav class="site-nav">
-        <a href="https://www.holidayextras.com/airport-parking.html" target="_blank" rel="noopener">Airport Parking</a>
-        <a href="https://www.holidayextras.com/airport-hotels.html" target="_blank" rel="noopener">Airport Hotels</a>
-        <a href="https://www.holidayextras.com/airport-lounges.html" target="_blank" rel="noopener">Airport Lounges</a>
-        <a href="https://www.holidayextras.com/travel-insurance.html" target="_blank" rel="noopener">Travel Insurance</a>
-        <a href="https://www.holidayextras.com/a-z.html" target="_blank" rel="noopener">A–Z</a>
+    <!-- ===== TOP BAR: dropdown nav + search + flag ===== -->
+    <div class="hxh-topbar">
+      <div class="container">
+        <ul class="hxh-topbar__nav">
 
-        <!-- Auth -->
-        <% if (user) { %>
-          <div class="user-chip">
-            <% if (user.photo) { %><img src="<%= user.photo %>" class="user-avatar" alt="<%= user.name %>" /><% } %>
-            <span class="user-name"><%= user.name %></span>
-            <a href="/logout" class="nav-signout">Sign out</a>
-          </div>
-        <% } else { %>
-          <a href="/auth/google" class="nav-signin">Sign in</a>
-        <% } %>
-      </nav>
+          <!-- Airport Extras mega-dropdown -->
+          <li class="hxh-topbar__item hxh-topbar__item--dropdown">
+            <a href="https://www.holidayextras.com" class="hxh-topbar__link" target="_blank" rel="noopener">
+              Airport Extras
+              <svg width="20" height="9" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.499939 0.5L3.49994 4.5L6.49994 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"/></svg>
+            </a>
+            <div class="hxh-dropdown hxh-dropdown--mega">
+              <div class="hxh-dropdown__col">
+                <strong>Airport Parking</strong>
+                <ul>
+                  <li><a href="https://www.holidayextras.com/airport-parking.html" target="_blank" rel="noopener">Airport Parking</a></li>
+                  <li><a href="https://www.holidayextras.com/gatwick-airport-parking.html" target="_blank" rel="noopener">Gatwick Parking</a></li>
+                  <li><a href="https://www.holidayextras.com/manchester-airport-parking.html" target="_blank" rel="noopener">Manchester Airport Parking</a></li>
+                  <li><a href="https://www.holidayextras.com/luton-airport-parking.html" target="_blank" rel="noopener">Luton Airport Parking</a></li>
+                  <li><a href="https://www.holidayextras.com/stansted-airport-parking.html" target="_blank" rel="noopener">Stansted Airport Parking</a></li>
+                  <li><a href="https://www.holidayextras.com/heathrow-airport-parking.html" target="_blank" rel="noopener">Heathrow Parking</a></li>
+                  <li><a href="https://www.holidayextras.com/birmingham-airport-parking.html" target="_blank" rel="noopener">Birmingham Airport Parking</a></li>
+                  <li><a href="https://www.holidayextras.com/eastmidlands-airport-parking.html" target="_blank" rel="noopener">East Midlands Airport Parking</a></li>
+                </ul>
+              </div>
+              <div class="hxh-dropdown__col">
+                <strong>Airport Hotels</strong>
+                <ul>
+                  <li><a href="https://www.holidayextras.com/airport-hotels.html" target="_blank" rel="noopener">Airport Hotels</a></li>
+                  <li><a href="https://www.holidayextras.com/gatwick-airport-hotels.html" target="_blank" rel="noopener">Gatwick Airport Hotels</a></li>
+                  <li><a href="https://www.holidayextras.com/manchester-airport-hotels.html" target="_blank" rel="noopener">Manchester Airport Hotels</a></li>
+                  <li><a href="https://www.holidayextras.com/luton-airport-hotels.html" target="_blank" rel="noopener">Luton Airport Hotels</a></li>
+                  <li><a href="https://www.holidayextras.com/stansted-airport-hotels.html" target="_blank" rel="noopener">Stansted Airport Hotels</a></li>
+                  <li><a href="https://www.holidayextras.com/heathrow-hotels.html" target="_blank" rel="noopener">Heathrow Hotels</a></li>
+                  <li><a href="https://www.holidayextras.com/birmingham-airport-hotels.html" target="_blank" rel="noopener">Birmingham Airport Hotels</a></li>
+                  <li><a href="https://www.holidayextras.com/eastmidlands-airport-hotels.html" target="_blank" rel="noopener">East Midlands Airport Hotels</a></li>
+                </ul>
+              </div>
+              <div class="hxh-dropdown__col">
+                <strong>Airport Lounges</strong>
+                <ul>
+                  <li><a href="https://www.holidayextras.com/airport-lounges.html" target="_blank" rel="noopener">Airport Lounges</a></li>
+                  <li><a href="https://www.holidayextras.com/gatwick-airport-lounges.html" target="_blank" rel="noopener">Gatwick Airport Lounges</a></li>
+                  <li><a href="https://www.holidayextras.com/manchester-airport-lounges.html" target="_blank" rel="noopener">Manchester Airport Lounges</a></li>
+                  <li><a href="https://www.holidayextras.com/luton-airport-lounges.html" target="_blank" rel="noopener">Luton Airport Lounges</a></li>
+                  <li><a href="https://www.holidayextras.com/stansted-airport-lounges.html" target="_blank" rel="noopener">Stansted Airport Lounges</a></li>
+                  <li><a href="https://www.holidayextras.com/heathrow-airport-lounges.html" target="_blank" rel="noopener">Heathrow Airport Lounges</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-lounges.html" target="_blank" rel="noopener">European Airport Lounges</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-lounges.html" target="_blank" rel="noopener">Worldwide Airport Lounges</a></li>
+                </ul>
+              </div>
+              <div class="hxh-dropdown__col">
+                <strong>Airport Transfers</strong>
+                <ul>
+                  <li><a href="https://www.holidayextras.com/airport-taxi.html" target="_blank" rel="noopener">Airport Transfers</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-taxi.html" target="_blank" rel="noopener">Tenerife Airport Transfers</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-taxi.html" target="_blank" rel="noopener">Majorca Airport Transfers</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-taxi.html" target="_blank" rel="noopener">Alicante Airport Transfers</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-taxi.html" target="_blank" rel="noopener">Lanzarote Airport Transfers</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-taxi.html" target="_blank" rel="noopener">Faro Airport Transfers</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-taxi.html" target="_blank" rel="noopener">Malaga Airport Transfers</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-taxi.html" target="_blank" rel="noopener">Barcelona Airport Transfers</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <!-- Travel Insurance dropdown -->
+          <li class="hxh-topbar__item hxh-topbar__item--dropdown">
+            <a href="https://www.holidayextras.com/travel-insurance.html" class="hxh-topbar__link" target="_blank" rel="noopener">
+              Travel Insurance
+              <svg width="20" height="9" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.499939 0.5L3.49994 4.5L6.49994 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"/></svg>
+            </a>
+            <div class="hxh-dropdown hxh-dropdown--list">
+              <div class="hxh-dropdown__col">
+                <ul>
+                  <li><a href="https://www.holidayextras.com/travel-insurance.html" target="_blank" rel="noopener">Travel Insurance</a></li>
+                  <li><a href="https://www.holidayextras.com/travel-insurance/single-trip.html" target="_blank" rel="noopener">Single Trip Travel Insurance</a></li>
+                  <li><a href="https://www.holidayextras.com/travel-insurance/annual-travel-insurance.html" target="_blank" rel="noopener">Annual Travel Insurance</a></li>
+                  <li><a href="https://www.holidayextras.com/travel-insurance/cruise.html" target="_blank" rel="noopener">Cruise Travel Insurance</a></li>
+                  <li><a href="https://www.holidayextras.com/travel-insurance/gold-cover.html" target="_blank" rel="noopener">Gold Cover Travel Insurance</a></li>
+                  <li><a href="https://www.holidayextras.com/travel-insurance/silver-cover.html" target="_blank" rel="noopener">Silver Cover Travel Insurance</a></li>
+                  <li><a href="https://www.holidayextras.com/travel-insurance/bronze-cover.html" target="_blank" rel="noopener">Bronze Cover Travel Insurance</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <!-- UK Short Breaks dropdown -->
+          <li class="hxh-topbar__item hxh-topbar__item--dropdown">
+            <a href="https://www.holidayextras.com/uk-short-breaks.html" class="hxh-topbar__link" target="_blank" rel="noopener">
+              UK Short Breaks
+              <svg width="20" height="9" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.499939 0.5L3.49994 4.5L6.49994 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"/></svg>
+            </a>
+            <div class="hxh-dropdown hxh-dropdown--list">
+              <div class="hxh-dropdown__col">
+                <ul>
+                  <li><a href="https://www.holidayextras.com/uk-short-breaks.html" target="_blank" rel="noopener">All UK Breaks</a></li>
+                  <li><a href="https://www.holidayextras.com/uk-short-breaks/warner-bros-studio-tour-london-with-hotel.html" target="_blank" rel="noopener">Warner Bros. Studio Tour London</a></li>
+                  <li><a href="https://www.holidayextras.com/uk-short-breaks/paultons-park-breaks.html" target="_blank" rel="noopener">Paultons Park</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <!-- Other Extras dropdown -->
+          <li class="hxh-topbar__item hxh-topbar__item--dropdown">
+            <a href="https://www.holidayextras.com/a-z.html" class="hxh-topbar__link" target="_blank" rel="noopener">
+              Other Extras
+              <svg width="20" height="9" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.499939 0.5L3.49994 4.5L6.49994 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"/></svg>
+            </a>
+            <div class="hxh-dropdown hxh-dropdown--list">
+              <div class="hxh-dropdown__col">
+                <ul>
+                  <li><a href="https://www.holidayextras.com/corporate-travel.html" target="_blank" rel="noopener">Corporate Travel</a></li>
+                  <li><a href="https://www.holidayextras.com/airport-taxi.html" target="_blank" rel="noopener">Airport Taxi</a></li>
+                  <li><a href="https://www.holidayextras.com/airports-by-rail.html" target="_blank" rel="noopener">Airports by Rail</a></li>
+                  <li><a href="https://www.holidayextras.com/flights/gatwick-departures.html" target="_blank" rel="noopener">Gatwick Departures</a></li>
+                  <li><a href="https://www.holidayextras.com/flights/heathrow-departures.html" target="_blank" rel="noopener">Heathrow Departures</a></li>
+                  <li><a href="https://www.holidayextras.com/heathrow-arrivals.html" target="_blank" rel="noopener">Heathrow Arrivals</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <!-- Search -->
+          <li class="hxh-topbar__item hxh-topbar__search">
+            <a href="https://www.holidayextras.com/search.html" class="hxh-topbar__link" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="white" stroke-width="1.5"/><path d="M11.5 11.5L15.5 15.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Search
+            </a>
+          </li>
+
+          <!-- Country flag -->
+          <li class="hxh-topbar__item hxh-topbar__flag">
+            <img src="https://dmy0b9oeprz0f.cloudfront.net/holidayextras.co.uk/ppc-images/country-flags/flag-GB.svg" alt="GB" class="hxh-flag-img" />
+            <svg width="10" height="7" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.499939 0.5L3.49994 4.5L6.49994 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"/></svg>
+          </li>
+
+        </ul>
+      </div>
     </div>
+
+    <!-- ===== BOTTOM BAR: logo + strapline + utility icons ===== -->
+    <div class="hxh-bottom">
+      <div class="container">
+        <div class="hxh-brand">
+          <p class="hxh-strapline">Less hassle. More holiday.</p>
+          <a href="/" class="hxh-logo">Holiday Extras</a>
+        </div>
+
+        <ul class="hxh-utils">
+
+          <!-- New Trip -->
+          <li>
+            <a href="/" class="hxh-util-btn">
+              <svg width="40" height="40" viewBox="0 0 43 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.57534 28.5786V27.5537H7.64834V28.5497C7.64834 29.185 7.83941 29.7696 8.22457 30.2038C8.49 30.5031 8.83017 30.7104 9.2164 30.8127V30.9369C8.80334 30.838 8.46103 30.6332 8.19959 30.3535C7.82068 29.9482 7.57534 29.3456 7.57534 28.5786ZM23.8998 28.5497V27.5537H23.9728V28.5786C23.9728 29.3456 23.7274 29.9483 23.3487 30.3537C23.0858 30.6352 22.7411 30.8408 22.3253 30.9388V30.8144C22.7142 30.7128 23.0567 30.5047 23.3236 30.2038C23.7087 29.7696 23.8998 29.185 23.8998 28.5497ZM23.9728 11.4409V25.0363H23.8998V11.4728C23.8998 10.835 23.7092 10.2493 23.3235 9.81455C22.9322 9.37351 22.3792 9.13368 21.7569 9.13368H21.2415V9.01936H21.7517C22.4309 9.01936 22.9734 9.26612 23.349 9.66764C23.7275 10.0722 23.9728 10.6739 23.9728 11.4409ZM18.7078 30.8862V31.0031H12.8403V30.8858H18.7078V30.8862ZM9.7993 9.01936H10.3189V9.13368H9.79122C9.16897 9.13368 8.61539 9.37351 8.22407 9.81455C7.84088 10.2446 7.64834 10.8297 7.64834 11.4728V25.0363H7.57534V11.4409C7.57534 10.6739 7.82068 10.0722 8.19883 9.66764C8.57441 9.26612 9.11805 9.01936 9.7993 9.01936ZM7.57534 25.0363V27.5537H7.64834V25.0082H7.57534V25.0363ZM23.9728 27.5537V25.0363H23.9566V25.0082H23.8998V27.5537H23.9728Z" fill="white"/><path d="M7.57534 25.0363V11.4409C7.57534 10.0312 8.55814 9.01936 9.7993 9.01936H21.7517C22.9763 9.01936 23.9728 10.0312 23.9728 11.4409V25.0363M7.57534 25.0363V27.5537M7.57534 25.0363H23.9728M23.9728 25.0363V27.5537M7.57534 27.5537V28.5786C7.57534 29.8716 8.5435 30.9369 9.7993 30.9369H12.8403M7.57534 27.5537H23.9728M23.9728 27.5537V28.5786C23.9728 29.8716 23.0047 30.9369 21.7489 30.9369H18.7078M12.8403 30.9369V31.0031M12.8403 30.9369H18.7078M18.7078 30.9369V31.0031" stroke="white" stroke-width="1.2"/><rect x="11.5189" y="2.62572" width="8.5122" height="6.39364" rx="1.97472" fill="white" stroke="white" stroke-width="1.2"/><circle cx="28.9753" cy="20" r="7.4" stroke="white" stroke-width="1.2"/><path d="M28.9753 16.6V20.2353L31.3753 22.6" stroke="white" stroke-width="1.2" stroke-linecap="round"/><path d="M25.5753 20H29.0" stroke="white" stroke-width="1.4" stroke-linecap="round"/><path d="M28.9753 16.8V20L31.2 22.4" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <span>New Trip</span>
+            </a>
+          </li>
+
+          <!-- Get the App -->
+          <li>
+            <a href="https://app.holidayextras.com/seo" class="hxh-util-btn" target="_blank" rel="noopener">
+              <svg width="41" height="35" viewBox="0 0 43 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.688 19.8161L14.1448 14.7603" stroke="white" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/><path d="M30.2509 26.2864L30.9539 32.7567C31.1137 34.1411 29.9952 35.3448 28.5252 35.4953L19.1619 36.3982C17.6919 36.5486 16.3497 35.5254 16.1899 34.1712L15.5188 28.062" fill="#542E91" stroke="white" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/><path d="M25.4575 9.52355L25.7771 9.49346C27.2471 9.34299 28.5573 10.3662 28.7171 11.7205L29.3882 18.1005" fill="#542E91" stroke="white" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.5353 3.29391C13.4073 3.20363 13.2156 3.05315 13.0238 2.8124C12.6722 2.37109 12.3526 2 11.5537 2C10.8147 2 9.98186 2.48151 9.63916 3.02271L10.2144 4.16634C10.7896 5.27979 12.1957 5.70112 13.3461 5.15944L22.375 0.530371" fill="#542E91" stroke="white" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/><path d="M28.4297 5.52091C27.8226 4.40747 26.4485 3.98614 25.298 4.52782L16.0625 3.29391C15.9985 3.3541 15.9666 3.3541 15.9027 3.41429L15.0718 3.50457C14.4007 4.40741 13.7296 6.6946 15.1996 10.3661C12.8668 11.4495 9.63916 13.0145 9.63916 13.0145L10.2144 14.1581C10.7896 15.2716 12.1957 15.6929 13.3461 15.1512L27.3751 8.53037C28.5575 7.95857 29.0049 6.57422 28.4297 5.52091Z" fill="#542E91" stroke="white" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/><path d="M33.5747 21.6517C33.9582 24.4806 32.4882 26.7377 29.7719 26.2261C27.471 25.7747 24.9784 23.969 23.9238 21.9527C22.6775 19.6053 25.3299 18.4316 28.238 18.1608C31.6893 17.8899 33.2232 18.7627 33.5747 21.6517Z" fill="#542E91" stroke="white" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5247 24.1798C11.9082 27.0087 13.8895 28.8745 16.3821 27.761C18.5232 26.798 20.9839 22.2838 21.5911 19.7258C22.1983 17.1678 19.6738 16.0543 16.9254 16.3251C13.4741 16.596 11.1413 21.3509 11.5247 24.1798Z" fill="#542E91" stroke="white" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/><path d="M27.9184 18.2209L27.8545 17.7996L15.9985 19.1538L16.0624 19.5751" fill="#542E91" stroke="white" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/><defs><clipPath id="clip0_71_1654"><rect width="25.2778" height="35" fill="white" transform="translate(9 2)"/></clipPath></defs></svg>
+              <span>Get the App</span>
+            </a>
+          </li>
+
+          <!-- Support -->
+          <li>
+            <a href="https://www.holidayextras.com/help-and-support.html" class="hxh-util-btn" target="_blank" rel="noopener">
+              <svg width="41" height="35" viewBox="0 0 41 35" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M36.3437 6.53125C35.5625 5.75 34.2812 5.75 33.4687 6.53125C33.4062 6.59375 33.375 6.65625 33.3125 6.71875C33.25 6.65625 33.2187 6.59375 33.1562 6.53125C32.375 5.75 31.0938 5.75 30.2812 6.53125C29.5 7.3125 29.5625 8.6875 30.2812 9.40625C31 10.125 33.3125 11.3438 33.3125 11.3438C33.3125 11.3438 35.5312 10.1875 36.3437 9.40625C37.125 8.59375 37.125 7.3125 36.3437 6.53125Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M30.6562 13.7499C31.0312 13.9062 31.4062 14.0624 31.8125 14.1562C35.1875 14.9687 38.5625 12.9374 39.4062 9.56245C40.2187 6.18745 38.1875 2.81245 34.8125 1.9687C31.4375 1.12495 28.0625 3.18745 27.2187 6.56245C26.75 8.56245 27.2812 10.5624 28.4687 12.0312L27.7187 15.1249L30.6562 13.7499Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M24.8125 31.1875V26.75C25.75 27.2188 26.875 27.5 28.1875 27.5C34.0313 27.5 37.8438 23.25 37.8438 20.0938C37.9063 18.875 36.875 17.9063 35.6563 17.9063C34.6563 17.9063 33.8438 18.5625 33.5625 19.4688C33.0625 21.5625 31.25 23.0625 28.4688 23.0625C25.6875 23.0625 25.3125 21.5938 23.4688 20.0938C22.75 19.5 22.4063 19.0938 21.7188 19C23.5 18.1875 24.75 16.375 24.75 14.2813C24.75 11.4063 22.4063 9.09375 19.5625 9.09375C16.7188 9.09375 14.375 11.4375 14.375 14.2813C14.375 16.375 15.625 18.1875 17.4063 19C16.75 19.0938 16.4063 19.5 15.6563 20.0938C13.8125 21.5938 13.4063 23.0625 10.6563 23.0625C7.90626 23.0625 6.06251 21.5625 5.56251 19.4688C5.28126 18.5625 4.46876 17.9063 3.46876 17.9063C2.25001 17.9063 1.21876 18.875 1.28126 20.0938C1.28126 23.25 5.09376 27.5 10.9375 27.5C12.2813 27.5 13.375 27.2188 14.3125 26.75V31.1875" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Support</span>
+            </a>
+          </li>
+
+          <!-- Auth: signed in or sign in -->
+          <% if (locals.user) { %>
+            <li class="hxh-user">
+              <div class="hxh-user__avatar">
+                <% if (user.photo) { %>
+                  <img src="<%= user.photo %>" alt="<%= user.name %>" class="hxh-user__photo" />
+                <% } else { %>
+                  <span class="hxh-user__init"><%= user.name.split(' ').map(function(n){return n[0]}).join('').substring(0,2).toUpperCase() %></span>
+                <% } %>
+              </div>
+              <span class="hxh-user__name"><%= user.name.split(' ')[0] %></span>
+              <a href="/logout" class="hxh-user__signout">Sign out</a>
+            </li>
+          <% } else { %>
+            <li>
+              <a href="/auth/google" class="hxh-util-btn">
+                <svg width="32" height="34" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 25C10.9505 24.2475 14.1683 22.6733 15 22.5545C12 22.5545 9.59747 19.2277 9.59747 16.5743C9.59747 12.9703 12.5678 10 16.1717 10C19.7757 10 22.746 12.9307 22.746 16.5743C22.746 19.2277 20 22.5545 17.5 22.5545C18.3713 22.6733 21.0891 24.2475 22 25" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M27.5 16C27.5 9.64873 22.3513 4.5 16 4.5C9.64873 4.5 4.5 9.64873 4.5 16C4.5 22.3513 9.64873 27.5 16 27.5C22.3513 27.5 27.5 22.3513 27.5 16Z" stroke="white"/></svg>
+                <span>Sign in</span>
+              </a>
+            </li>
+          <% } %>
+
+        </ul>
+      </div>
+    </div>
+
   </div>
-</header>
+</nav>
