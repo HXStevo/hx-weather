@@ -780,29 +780,330 @@ img {
 }
 
 /* ===========================
-   Footer
+   Footer — HX Full Footer
    =========================== */
-.site-footer {
-  background: var(--text-dark);
-  padding: 2rem 0;
+
+/* --- Windsurfer Banner --- */
+.hxf-banner {
+  background: linear-gradient(100deg, var(--hx-purple-dark) 0%, #6535aa 60%, #7a42c4 100%);
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-.footer-inner {
-  text-align: center;
+.hxf-banner__inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-.site-footer p {
-  font-size: 0.875rem;
-  color: rgba(255,255,255,0.45);
+.hxf-banner__visual {
+  font-size: 3rem;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
 
-.site-footer a {
-  color: rgba(255,255,255,0.65);
+.hxf-banner__message {
+  flex: 1;
+  min-width: 200px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.975rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hxf-banner__link {
+  color: var(--hx-yellow);
+  text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.hxf-banner__link:hover {
+  opacity: 0.85;
   text-decoration: underline;
 }
 
-.site-footer a:hover {
-  color: var(--white);
+.hxf-banner__signup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.hxf-banner__signup-label {
+  color: rgba(255,255,255,0.9);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.hxf-banner__form {
+  display: flex;
+  gap: 0;
+}
+
+.hxf-banner__input {
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-pill) 0 0 var(--radius-pill);
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.875rem;
+  width: 210px;
+  outline: none;
+  background: rgba(255,255,255,0.95);
+  color: var(--text-dark);
+}
+
+.hxf-banner__input::placeholder {
+  color: var(--text-light);
+}
+
+.hxf-banner__btn {
+  background: var(--hx-yellow);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+  padding: 0.55rem 1.3rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.hxf-banner__btn:hover {
+  background: var(--hx-yellow-hover);
+}
+
+/* --- Main Footer --- */
+.hxf-footer {
+  background: var(--hx-purple);
+  color: white;
+  padding: 3rem 0 0;
+}
+
+.hxf-footer__inner {
+  display: grid;
+  grid-template-columns: 210px repeat(5, 1fr);
+  gap: 2.5rem 2rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Brand Column */
+.hxf-col--brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hxf-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+}
+
+.hxf-logo:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.hxf-logo__hx {
+  background: var(--hx-yellow);
+  color: var(--hx-purple-dark);
+  font-weight: 900;
+  font-size: 1.05rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.hxf-logo__text {
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.hxf-tagline {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Social Icons */
+.hxf-social {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.hxf-social__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius-pill);
+  color: white;
+  text-decoration: none;
+  transition: background 0.18s;
+  flex-shrink: 0;
+}
+
+.hxf-social__link:hover {
+  background: rgba(255,255,255,0.22);
+  text-decoration: none;
+}
+
+.hxf-social__link svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Address */
+.hxf-address {
+  font-style: normal;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+/* App Store Badges */
+.hxf-appbadges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hxf-appbadge {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.18s;
+}
+
+.hxf-appbadge:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.hxf-appbadge__svg {
+  width: 130px;
+  height: auto;
+  border-radius: 7px;
+}
+
+/* Trust Badges */
+.hxf-trust {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hxf-trust__badge {
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: white;
+  font-weight: 800;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 5px;
+  letter-spacing: 0.08em;
+}
+
+/* Link Columns */
+.hxf-col--links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hxf-col__title {
+  color: var(--hx-yellow);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.hxf-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hxf-links a {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.15s;
+  line-height: 1.4;
+}
+
+.hxf-links a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* --- Bottom Legal Bar --- */
+.hxf-bottom {
+  background: var(--hx-purple-dark);
+  padding: 1.25rem 0;
+}
+
+.hxf-bottom__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hxf-copyright {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.hxf-copyright a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: underline;
+}
+
+.hxf-copyright a:hover {
+  color: white;
+}
+
+.hxf-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+.hxf-legal a {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.hxf-legal a:hover {
+  color: white;
+  text-decoration: none;
 }
 
 /* ===========================
@@ -961,9 +1262,37 @@ img {
 /* ===========================
    Responsive
    =========================== */
+@media (max-width: 1080px) {
+  .hxf-footer__inner {
+    grid-template-columns: 200px repeat(5, 1fr);
+    gap: 2rem 1.25rem;
+  }
+}
+
 @media (max-width: 900px) {
   .season-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .hxf-footer__inner {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem 1.5rem;
+  }
+
+  .hxf-col--brand {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    align-items: flex-start;
+  }
+
+  .hxf-appbadges {
+    flex-direction: row;
+  }
+
+  .hxf-banner__inner {
+    gap: 1.25rem;
   }
 }
 
@@ -978,6 +1307,31 @@ img {
 
   .lang-switcher {
     gap: 0.3rem;
+  }
+
+  .hxf-footer__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 1.25rem;
+  }
+
+  .hxf-col--brand {
+    grid-column: 1 / -1;
+  }
+
+  .hxf-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .hxf-banner__input {
+    width: 160px;
+  }
+
+  .hxf-bottom__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 }
 
@@ -1024,5 +1378,13 @@ img {
 
   .season-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hxf-footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hxf-legal {
+    gap: 0.25rem 0.9rem;
   }
 }
