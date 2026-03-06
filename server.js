@@ -120,7 +120,10 @@ app.get('/auth/status', (req, res) => {
     clientIdSet: !!process.env.GOOGLE_CLIENT_ID,
     clientSecretSet: !!process.env.GOOGLE_CLIENT_SECRET,
     callbackUrl: process.env.CALLBACK_URL || '(not set)',
-    strategyRegistered: !!passport._strategy('google')
+    strategyRegistered: !!passport._strategy('google'),
+    nodeEnv: process.env.NODE_ENV || '(not set)',
+    port: process.env.PORT || '(not set)',
+    allEnvKeys: Object.keys(process.env).filter(k => !k.includes('SECRET') && !k.includes('KEY')).join(', ')
   });
 });
 
