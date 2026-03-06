@@ -69,57 +69,57 @@ img {
    =========================== */
 .site-header {
   background: var(--hx-purple);
-  padding: 0.875rem 0;
+  padding: 0 0;
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 12px rgba(84, 46, 145, 0.3);
 }
 
-.header-inner {
+.header-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  padding: 0.75rem 0;
 }
 
 .logo {
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--white);
-  text-decoration: none;
-  letter-spacing: -0.3px;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
-.logo::before {
-  content: '✈';
-  font-size: 1.1rem;
+.logo img {
+  height: 38px;
+  width: auto;
+  /* ensure white logo shows on purple background */
+  filter: brightness(0) invert(1);
 }
 
 .logo:hover {
   text-decoration: none;
-  opacity: 0.92;
+  opacity: 0.9;
 }
 
 .site-nav {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.5rem;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.site-nav a {
+.site-nav > a {
   color: rgba(255,255,255,0.85);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s;
+  white-space: nowrap;
 }
 
-.site-nav a:hover {
+.site-nav > a:hover {
   color: var(--white);
   text-decoration: none;
 }
@@ -205,6 +205,15 @@ img {
   height: 60px;
   background: var(--bg);
   clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.hero-strapline {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--hx-yellow);
+  margin-bottom: 0.6rem;
 }
 
 .index-hero h1 {

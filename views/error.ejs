@@ -10,23 +10,7 @@
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="/" class="logo">Holiday Extras</a>
-      <nav class="site-nav">
-        <a href="/">← All destinations</a>
-        <% if (user) { %>
-          <div class="user-chip">
-            <% if (user.photo) { %><img src="<%= user.photo %>" class="user-avatar" alt="<%= user.name %>" /><% } %>
-            <span class="user-name"><%= user.name %></span>
-            <a href="/logout" class="nav-signout">Sign out</a>
-          </div>
-        <% } else { %>
-          <a href="/auth/google" class="nav-signin">Sign in with Google</a>
-        <% } %>
-      </nav>
-    </div>
-  </header>
+  <%- include('partials/header', { user }) %>
   <section class="weather-hero">
     <div class="container">
       <h1>Weather in <%= country.country %></h1>

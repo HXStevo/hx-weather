@@ -1,0 +1,32 @@
+<header class="site-header">
+  <div class="container">
+    <div class="header-top">
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <img src="https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/images/logos/HolidayExtras-logo-horizontal-transparent.svg"
+             alt="Holiday Extras"
+             height="38" />
+      </a>
+
+      <!-- Main nav -->
+      <nav class="site-nav">
+        <a href="https://www.holidayextras.com/airport-parking.html" target="_blank" rel="noopener">Airport Parking</a>
+        <a href="https://www.holidayextras.com/airport-hotels.html" target="_blank" rel="noopener">Airport Hotels</a>
+        <a href="https://www.holidayextras.com/airport-lounges.html" target="_blank" rel="noopener">Airport Lounges</a>
+        <a href="https://www.holidayextras.com/travel-insurance.html" target="_blank" rel="noopener">Travel Insurance</a>
+        <a href="https://www.holidayextras.com/a-z.html" target="_blank" rel="noopener">A–Z</a>
+
+        <!-- Auth -->
+        <% if (user) { %>
+          <div class="user-chip">
+            <% if (user.photo) { %><img src="<%= user.photo %>" class="user-avatar" alt="<%= user.name %>" /><% } %>
+            <span class="user-name"><%= user.name %></span>
+            <a href="/logout" class="nav-signout">Sign out</a>
+          </div>
+        <% } else { %>
+          <a href="/auth/google" class="nav-signin">Sign in</a>
+        <% } %>
+      </nav>
+    </div>
+  </div>
+</header>
