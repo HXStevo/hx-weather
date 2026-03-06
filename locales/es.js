@@ -20,6 +20,13 @@ module.exports = {
     lessHassle:              'Menos complicaciones. Más vacaciones.',
     footerText:              `© Holiday Extras ${new Date().getFullYear()}. Datos meteorológicos proporcionados por`,
     footerOpenMeteo:         'Open-Meteo',
+    switchLanguage:          'Ver en:',
+    climateBySeasonTitle:    'Clima por estación',
+    localWeatherTipsTitle:   'Consejos meteorológicos locales',
+    spring:                  'Primavera',
+    summer:                  'Verano',
+    autumn:                  'Otoño',
+    winter:                  'Invierno',
   },
   wmo: {
     0:  'Cielo despejado',
@@ -59,6 +66,17 @@ module.exports = {
       packingTips: 'Ropa ligera y protector solar de factor alto son imprescindibles. Incluye una chaqueta ligera para las noches más frescas y calzado cómodo para recorrer las ciudades.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para España',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '14–22°C', desc: 'Templado y soleado con algún chubasco. Las flores silvestres adornan el campo y el turismo es un placer sin las masas del verano.' },
+        summer: { temp: '28–38°C', desc: 'Caluroso y seco, especialmente en el interior. Las zonas costeras disfrutan de brisas marinas refrescantes, aunque julio y agosto pueden ser muy intensos.' },
+        autumn: { temp: '15–24°C', desc: 'Aún cálido bien entrado octubre, especialmente en el sur. Las fiestas de la vendimia, menos turistas y mejores precios hacen de este periodo una época favorita.' },
+        winter: { temp: '8–14°C', desc: 'Suave en Andalucía y en las islas, pero frío en Madrid y el norte. Ideal para escapadas urbanas con muchos menos turistas.' },
+      },
+      localTips: [
+        'El calor del mediodía puede superar los 40 °C en el interior en julio y agosto — planifique actividades al aire libre a primera hora o por la tarde.',
+        'Las brisas marinas en la Costa del Sol y la Costa Blanca hacen que las temperaturas costeras sean más llevaderas de lo que parecen.',
+        'Las Islas Canarias ofrecen sol cálido durante todo el año, lo que las convierte en un popular destino de sol invernal.',
+      ],
     },
     france: {
       slug: 'francia',
@@ -71,6 +89,17 @@ module.exports = {
       packingTips: 'En París conviene llevar un impermeable por si el tiempo es variable. En el sur, ropa ligera y protección solar son esenciales. Un calzado cómodo es imprescindible para explorar las ciudades.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para Francia',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '10–20°C', desc: 'París cobra vida con flores y la cultura de las terrazas. El sur se calienta rápidamente y el Valle del Loira está en su mejor momento verde y exuberante.' },
+        summer: { temp: '22–32°C', desc: 'Días largos y soleados en el sur y en la costa atlántica. París puede registrar olas de calor, pero es más moderado que la Provenza o la Costa Azul.' },
+        autumn: { temp: '12–22°C', desc: 'Luz dorada y temporada de vendimia en Borgoña y Burdeos. Aún cálido en el sur en octubre, y París se muestra en su faceta más romántica.' },
+        winter: { temp: '3–10°C', desc: 'Fresco y a menudo gris en París y el norte. Los Alpes y los Pirineos ofrecen esquí de primera clase. La Riviera se mantiene suave y agradable.' },
+      },
+      localTips: [
+        'Lleve un impermeable incluso en verano — los chaparrones parisinos pueden llegar sin avisar.',
+        'El Mistral en la Provenza puede hacer que los días soleados resulten mucho más fríos de lo que indica el termómetro.',
+        'Las estaciones de esquí de los Alpes se llenan en las vacaciones escolares de febrero — reserve con antelación.',
+      ],
     },
     greece: {
       slug: 'grecia',
@@ -83,6 +112,17 @@ module.exports = {
       packingTips: 'Ropa ligera de verano, protector solar y sandalias cómodas son esenciales. Lleva un pañuelo para visitar iglesias y monasterios. Una chaqueta ligera es útil a principios de primavera.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para Grecia',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '15–25°C', desc: 'Posiblemente la época más hermosa en Grecia. Las flores silvestres alfombran las colinas, los yacimientos están tranquilos y el tiempo es gloriosamente cálido.' },
+        summer: { temp: '28–36°C', desc: 'Caluroso, soleado y seco — casi perfecto para las vacaciones en la playa. Julio y agosto son temporada alta con vida nocturna animada en las islas.' },
+        autumn: { temp: '18–28°C', desc: 'Las temperaturas del mar se mantienen agradables hasta octubre y la afluencia de turistas disminuye considerablemente. Septiembre es uno de los mejores meses para visitar Grecia.' },
+        winter: { temp: '8–15°C', desc: 'Suave en las costas y las islas con algo de lluvia invernal. Momento tranquilo para escapadas urbanas a Atenas, con la mayoría de negocios isleños cerrados.' },
+      },
+      localTips: [
+        'El Meltemi sopla de forma fiable sobre el mar Egeo en julio y agosto, refrescando el ambiente pero pudiendo afectar a los servicios de ferry.',
+        'Reserve con mucha antelación para Santorini y Mykonos en pleno verano — se agotan muy rápido.',
+        'Visitar la Acrópolis y otros yacimientos al amanecer es mucho más agradable — y mucho más fresco — que a mediodía.',
+      ],
     },
     turkey: {
       slug: 'turquia',
@@ -95,6 +135,17 @@ module.exports = {
       packingTips: 'Ropa ligera para el verano y capas abrigadas para las zonas de montaña. Recuerda cubrir hombros y rodillas al visitar mezquitas. El protector solar es fundamental durante todo el año.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para Turquía',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '14–24°C', desc: 'Una de las mejores épocas para visitar — días cálidos, paisajes verdes y menos turistas. Estambul es especialmente encantadora con los festivales de tulipanes en abril.' },
+        summer: { temp: '28–38°C', desc: 'Caluroso y seco en las costas egea y mediterránea, ideal para los complejos de playa. Estambul es cálida y está muy concurrida tanto por turistas como por el calor.' },
+        autumn: { temp: '16–26°C', desc: 'Aún cálido en la costa durante octubre. Capadocia se vuelve mágica con los colores del otoño y los vuelos en globo bajo cielos despejados.' },
+        winter: { temp: '3–12°C', desc: 'Fresco y lluvioso en Estambul con ocasionales nevadas. Las costas son más suaves pero tranquilas. Capadocia puede cubrirse de una preciosa nieve invernal.' },
+      },
+      localTips: [
+        'La costa turca se pone extremadamente calurosa en julio y agosto — busque sombra durante las horas centrales del día.',
+        'Estambul tiene su propio microclima gracias al Bósforo — lleve siempre una capa extra para las excursiones en barco.',
+        'Los vuelos en globo sobre Capadocia son más bellos en primavera y otoño, cuando el cielo está más despejado y los vientos más estables.',
+      ],
     },
     portugal: {
       slug: 'portugal',
@@ -107,6 +158,17 @@ module.exports = {
       packingTips: 'Ropa ligera para el verano, una chaqueta ligera para los paseos nocturnos y calzado cómodo para los adoquines de Lisboa. Un protector solar de factor alto es imprescindible.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para Portugal',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '14–22°C', desc: 'Lisboa florece con jacarandas en mayo. El Algarve se calienta pronto y el Atlántico es revitalizante. El índice UV ya es elevado en esta época.' },
+        summer: { temp: '25–35°C', desc: 'Largo, caluroso y prácticamente sin lluvia. Las playas del Algarve son magníficas pero concurridas. Las brisas atlánticas hacen Lisboa más confortable que la mayoría de capitales europeas.' },
+        autumn: { temp: '15–24°C', desc: 'Dorado y cálido bien entrado octubre. Menos turistas y precios más bajos lo hacen muy atractivo. La temporada de vendimia es un valioso extra.' },
+        winter: { temp: '10–16°C', desc: 'Suave y a veces lluvioso en Lisboa y Oporto, pero con muchos días soleados. El Algarve se mantiene muy agradable con sol la mayor parte de los días.' },
+      },
+      localTips: [
+        'El índice UV de Portugal es alto incluso en primavera — aplique FPS 30 o superior a diario y repita la aplicación.',
+        'Los vientos atlánticos en la costa occidental hacen el mar más agitado y frío que las playas con orientación sur del Algarve.',
+        'Las colinas y adoquines de Lisboa pueden ser resbaladizos bajo la lluvia invernal — elija calzado con buena adherencia.',
+      ],
     },
     italy: {
       slug: 'italia',
@@ -119,6 +181,17 @@ module.exports = {
       packingTips: 'Ropa ligera para el litoral, ropa más elegante para los restaurantes y ropa que cubra para visitar iglesias. Una chaqueta ligera es recomendable en primavera y otoño.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para Italia',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '12–22°C', desc: 'Roma y Florencia son impresionantes con flores y muchos menos turistas que en verano. Los lagos del norte reflejan los Alpes nevados con una luz cristalina.' },
+        summer: { temp: '26–35°C', desc: 'Caluroso y soleado, especialmente en el sur. La Costa Amalfitana y Sicilia están en su máximo esplendor. Las grandes ciudades pueden ser agobiantes en agosto.' },
+        autumn: { temp: '14–24°C', desc: 'Cálido y dorado — ideal para el turismo gastronómico y vinícola. El campo se tiñe de colores espectaculares y las temperaturas del mar siguen siendo agradables en septiembre.' },
+        winter: { temp: '4–12°C', desc: 'Fresco en el norte y el centro, suave en el sur. Venecia es atmosférica y libre de aglomeraciones en invierno. Los Dolomitas ofrecen excelente esquí desde diciembre.' },
+      },
+      localTips: [
+        'Muchos italianos se marchan de las ciudades en agosto — algunos restaurantes cierran, pero los lugares turísticos están más llenos que nunca.',
+        'Las tormentas vespertinas son frecuentes en los Alpes en verano — planifique las excursiones de montaña por la mañana.',
+        'Los códigos de vestimenta en las iglesias se aplican con rigor — lleve siempre un pañuelo o una capa ligera para cubrirse.',
+      ],
     },
     croatia: {
       slug: 'croacia',
@@ -131,6 +204,17 @@ module.exports = {
       packingTips: 'Ropa ligera y bañador para el litoral, calzado resistente para los parques nacionales. Un chubasquero es útil en las excursiones en barco.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para Croacia',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '12–22°C', desc: 'Dubrovnik y la costa dálmata son tranquilas y bellísimas en primavera. El Parque Nacional de los Lagos de Plitvice está en su momento más espectacular con grandes cascadas.' },
+        summer: { temp: '26–34°C', desc: 'Temporada alta con mar cálido, abundante sol y ambiente animado. El Adriático alcanza 26 °C y las islas están repletas de visitantes.' },
+        autumn: { temp: '14–24°C', desc: 'Septiembre parece un segundo verano — cálido, soleado y notablemente más tranquilo. Octubre trae una luz dramática y colores ocres a los parques nacionales.' },
+        winter: { temp: '5–12°C', desc: 'Suave en la costa pero tranquilo, con muchos negocios turísticos cerrados. Zagreb celebra un aclamado mercado de Adviento durante diciembre.' },
+      },
+      localTips: [
+        'La Bura puede soplar fría desde las montañas incluso en días soleados — lleve una chaqueta cortavientos para las excursiones en barco.',
+        'Dubrovnik está extremadamente concurrida en julio y agosto — visite el casco antiguo por la mañana temprano, antes de que lleguen los cruceros.',
+        'Junio y septiembre ofrecen el mejor equilibrio entre temperatura del mar y afluencia manejable de turistas.',
+      ],
     },
     cyprus: {
       slug: 'chipre',
@@ -143,6 +227,17 @@ module.exports = {
       packingTips: 'Ropa ligera para la mayor parte del año. En verano, protector solar, sombrero y gafas de sol son imprescindibles. Para senderismo en el Troodos en invierno, lleva ropa más abrigada.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para Chipre',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '18–26°C', desc: 'Cálido y soleado con anémonas silvestres alfombrando las colinas. Ideal para combinar playa con la exploración de castillos cruzados y sitios arqueológicos.' },
+        summer: { temp: '30–40°C', desc: 'Intensamente caluroso y seco. Las playas de Pafos y Limassol son magníficas, pero el mediodía es feroz. Los montes Troodos ofrecen un refrescante alivio a mayor altitud.' },
+        autumn: { temp: '20–30°C', desc: 'El mar se mantiene agradablemente cálido hasta noviembre y la afluencia disminuye desde mediados de septiembre. Una de las mejores épocas para disfrutar de Chipre con tranquilidad.' },
+        winter: { temp: '10–18°C', desc: 'Suave y soleado para los estándares del norte de Europa. Puede esquiar en el monte Olimpo de los Troodos y bañarse en el Mediterráneo la misma tarde.' },
+      },
+      localTips: [
+        'El sol de Chipre es muy intenso — el índice UV es extremo de abril a octubre. Se recomienda encarecidamente FPS 50.',
+        'En verano, planifique las actividades de playa antes de las 11h o después de las 16h para evitar el calor más intenso del mediodía.',
+        'El monte Olimpo en los Troodos puede recibir nieve de diciembre a marzo — lleve ropa de abrigo si planea visitarlo.',
+      ],
     },
     malta: {
       slug: 'malta',
@@ -155,6 +250,17 @@ module.exports = {
       packingTips: 'Ropa ligera, protector solar y bañador son imprescindibles. Una chaqueta ligera para los meses de invierno. Calzado cómodo para las calles históricas de La Valeta.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para Malta',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '16–24°C', desc: 'Probablemente la mejor época para visitar — cálido, luminoso y cubierto de flores silvestres. La primavera maltesa es corta pero espectacular con cielos despejados.' },
+        summer: { temp: '28–34°C', desc: 'Caluroso, soleado y prácticamente sin lluvia. El agua alcanza 27 °C y la isla bulle de visitantes. Las celebraciones de las fiestas locales añaden ambiente festivo.' },
+        autumn: { temp: '20–28°C', desc: 'Octubre y noviembre son excelentes — el mar aún está cálido, las multitudes se han dispersado y los precios bajan notablemente. Perfecto para playa y cultura.' },
+        winter: { temp: '12–18°C', desc: 'Suave y mayormente soleado con algo de lluvia invernal. Malta es un destino invernal fantástico — mucho más cálido que el norte de Europa y nunca realmente frío.' },
+      },
+      localTips: [
+        'Malta ofrece muy poca sombra natural en exteriores — sombrero y protector solar de factor alto son imprescindibles de abril a octubre.',
+        'El siroco del norte de África puede traer aire caliente y polvoriento a Malta en verano, elevando las temperaturas de forma notable.',
+        'Incluso en invierno, lleve ropa ligera para el día — las temperaturas alcanzan regularmente 18 °C y el sol luce durante todo el año.',
+      ],
     },
     egypt: {
       slug: 'egipto',
@@ -167,6 +273,17 @@ module.exports = {
       packingTips: 'Ropa ligera y holgada para el día, un pañuelo o tela ligera para las mezquitas y zonas conservadoras. Protector solar y sombrero son fundamentales. Planifica capas adicionales para las noches invernales.',
       ctaLabel: 'Encuentra hoteles de aeropuerto para Egipto',
       ctaUrl: 'https://www.holidayextras.com/hotels.html',
+      seasons: {
+        spring: { temp: '20–32°C', desc: 'Calentamiento rápido con días largos y soleados. El Khamsin, un viento desértico cálido, puede traer arena y reducir la visibilidad en abril, aunque suele pasar pronto.' },
+        summer: { temp: '35–43°C', desc: 'Extremadamente caluroso en El Cairo y el Alto Egipto. Los complejos del mar Rojo se refrescan con las brisas marinas. Las visitas turísticas solo son sensatas al amanecer.' },
+        autumn: { temp: '22–34°C', desc: 'Las temperaturas empiezan a bajar y las excursiones se hacen más agradables desde octubre. Las condiciones de buceo en el mar Rojo son excelentes y la luz es magnifica.' },
+        winter: { temp: '12–22°C', desc: 'Perfecto para visitar monumentos antiguos con temperaturas diurnas agradables. Las noches cairotas pueden ser sorprendentemente frescas — lleve capas para después de la puesta de sol.' },
+      },
+      localTips: [
+        'Visite las Pirámides y el Valle de los Reyes a la apertura — tanto para evitar el calor como para adelantarse a los grupos de turistas.',
+        'El agua embotellada es imprescindible — el agua del grifo no es apta para beber y mantenerse hidratado en el calor es fundamental.',
+        'El mar Rojo ofrece buceo y snorkel excepcionales durante todo el año, pero de diciembre a marzo el agua está especialmente tranquila y clara.',
+      ],
     },
   },
 };

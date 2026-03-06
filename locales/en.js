@@ -20,5 +20,12 @@ module.exports = {
     lessHassle:            'Less hassle. More holiday.',
     footerText:            `© Holiday Extras ${new Date().getFullYear()}. Weather data provided by`,
     footerOpenMeteo:       'Open-Meteo',
+    switchLanguage:        'View in:',
+    climateBySeasonTitle:  'Climate by Season',
+    localWeatherTipsTitle: 'Local Weather Tips',
+    spring:                'Spring',
+    summer:                'Summer',
+    autumn:                'Autumn',
+    winter:                'Winter',
   }
 };

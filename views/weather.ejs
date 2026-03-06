@@ -26,6 +26,21 @@
     </div>
   </section>
 
+  <!-- Language Switcher -->
+  <% if (locals.alternates && alternates.length > 1) { %>
+  <div class="lang-bar">
+    <div class="container">
+      <div class="lang-switcher">
+        <% var langMeta = { en: { flag: '🇬🇧', label: 'EN' }, de: { flag: '🇩🇪', label: 'DE' }, fr: { flag: '🇫🇷', label: 'FR' }, es: { flag: '🇪🇸', label: 'ES' }, it: { flag: '🇮🇹', label: 'IT' } }; %>
+        <span class="lang-switcher__label"><%= t.switchLanguage %></span>
+        <% alternates.forEach(function(a) { var lm = langMeta[a.lang] || { flag: '', label: a.lang.toUpperCase() }; %>
+          <a href="<%= a.href %>" class="lang-pill<%= (a.lang === (locals.lang || 'en')) ? ' lang-pill--active' : '' %>" hreflang="<%= a.lang %>"><%= lm.flag %> <%= lm.label %></a>
+        <% }); %>
+      </div>
+    </div>
+  </div>
+  <% } %>
+
   <!-- Weather Snapshot -->
   <section class="weather-snapshot-section">
     <div class="container">
@@ -77,6 +92,62 @@
 
     </div>
   </section>
+
+  <!-- Climate by Season -->
+  <% if (country.seasons) { %>
+  <section class="content-section season-section">
+    <div class="container content-inner">
+      <div class="content-block">
+        <h2><%= t.climateBySeasonTitle %></h2>
+      </div>
+      <div class="season-grid">
+        <div class="season-card">
+          <div class="season-icon">🌸</div>
+          <h3><%= t.spring %></h3>
+          <div class="season-temp"><%= country.seasons.spring.temp %></div>
+          <p><%= country.seasons.spring.desc %></p>
+        </div>
+        <div class="season-card">
+          <div class="season-icon">☀️</div>
+          <h3><%= t.summer %></h3>
+          <div class="season-temp"><%= country.seasons.summer.temp %></div>
+          <p><%= country.seasons.summer.desc %></p>
+        </div>
+        <div class="season-card">
+          <div class="season-icon">🍂</div>
+          <h3><%= t.autumn %></h3>
+          <div class="season-temp"><%= country.seasons.autumn.temp %></div>
+          <p><%= country.seasons.autumn.desc %></p>
+        </div>
+        <div class="season-card">
+          <div class="season-icon">❄️</div>
+          <h3><%= t.winter %></h3>
+          <div class="season-temp"><%= country.seasons.winter.temp %></div>
+          <p><%= country.seasons.winter.desc %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- Local Weather Tips -->
+  <% if (country.localTips && country.localTips.length) { %>
+  <section class="content-section tips-section">
+    <div class="container content-inner">
+      <div class="content-block">
+        <h2><%= t.localWeatherTipsTitle %></h2>
+      </div>
+      <ul class="weather-tips-list">
+        <% country.localTips.forEach(function(tip) { %>
+          <li class="weather-tip">
+            <span class="weather-tip__icon">💡</span>
+            <span><%= tip %></span>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+  </section>
+  <% } %>
 
   <!-- CTA -->
   <section class="cta-section">

@@ -11,7 +11,18 @@ const countries = [
     bestTimeToVisit: "April to June and September to October — warm without the intense summer heat. The Spanish islands are popular year-round, with the Canaries particularly good in winter.",
     packingTips: "Light clothing and high-factor sun cream in summer. A light jacket for evenings in spring and autumn. Comfortable walking shoes are a must for city breaks.",
     ctaLabel: "Find Airport Hotels for Spain",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '14–22°C', desc: 'Mild and sunny with occasional showers. Wildflowers bloom across the countryside and sightseeing is a pleasure without the summer crowds.' },
+      summer: { temp: '28–38°C', desc: 'Hot and dry, especially inland. Coastal areas enjoy cooling sea breezes, but July and August can be very intense away from the coast.' },
+      autumn: { temp: '15–24°C', desc: 'Still warm well into October, especially in the south. Harvest festivals, fewer tourists and excellent value make this a favourite time to visit.' },
+      winter: { temp: '8–14°C', desc: 'Mild in Andalusia and on the islands but cold in Madrid and the north. A great time for city breaks with far fewer tourists.' },
+    },
+    localTips: [
+      'Midday heat in July and August can exceed 40°C inland — plan outdoor activities for early morning or evening.',
+      'Sea breezes along the Costa del Sol and Costa Blanca make coastal temperatures more bearable than they appear.',
+      'The Canary Islands offer warm sunshine year-round, making them a popular winter sun escape.',
+    ],
   },
   {
     slug: "france",
@@ -25,7 +36,18 @@ const countries = [
     bestTimeToVisit: "May to September for most of France — particularly the south and Atlantic coast. December to March is ideal for ski resorts in the Alps and Pyrenees.",
     packingTips: "A waterproof layer is essential for Paris, whatever the season. Light clothes and sun cream for the south in summer. Warm layers and snow boots for the Alps in winter.",
     ctaLabel: "Find Airport Hotels for France",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '10–20°C', desc: 'Paris comes alive with blossom and café culture. The south warms quickly and the Loire Valley is at its lush, green best.' },
+      summer: { temp: '22–32°C', desc: 'Long sunny days in the south and on the Atlantic coast. Paris can see warm spells but remains more moderate than Provence or the Riviera.' },
+      autumn: { temp: '12–22°C', desc: 'Golden light and harvest season in Burgundy and Bordeaux. Still warm in the south through October, with Paris at its most romantic.' },
+      winter: { temp: '3–10°C', desc: 'Cool and often grey in Paris and the north. The Alps and Pyrenees offer world-class skiing. The Riviera stays mild and pleasant.' },
+    },
+    localTips: [
+      'Pack a waterproof layer even in summer — Paris showers can arrive with little warning.',
+      'The Mistral wind in Provence can make sunny days feel much cooler than the temperature suggests.',
+      'Alpine resorts get crowded during February school holidays — book well ahead for ski trips.',
+    ],
   },
   {
     slug: "greece",
@@ -39,7 +61,18 @@ const countries = [
     bestTimeToVisit: "May to June and September to October for comfortable warmth without peak summer crowds. July and August are the hottest months — ideal for beach holidays but very busy.",
     packingTips: "Lightweight clothing, strong sun cream, and a hat are essential in summer. A light cardigan for evenings. Comfortable sandals or walking shoes for exploring ancient sites.",
     ctaLabel: "Find Airport Hotels for Greece",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '15–25°C', desc: 'Arguably the most beautiful time in Greece. Wildflowers carpet the hillsides, ancient sites are crowd-free and the weather is gloriously warm.' },
+      summer: { temp: '28–36°C', desc: 'Hot, sunny and dry — near-perfect for beach holidays. July and August are peak season with buzzing island nightlife and crowded beaches.' },
+      autumn: { temp: '18–28°C', desc: 'Warm sea temperatures persist into October and the summer crowds thin considerably. September is one of the best months to visit Greece.' },
+      winter: { temp: '8–15°C', desc: 'Mild on the coasts and islands with some winter rain. A quieter time for city breaks in Athens, with most island businesses closed.' },
+    },
+    localTips: [
+      'The Meltemi winds blow reliably across the Aegean in July and August, cooling things down but sometimes affecting ferry services.',
+      'Book accommodation well ahead for Santorini and Mykonos in peak summer — they fill up fast.',
+      'Sunrise visits to ancient sites like the Acropolis are far more enjoyable — and much cooler — than midday.',
+    ],
   },
   {
     slug: "turkey",
@@ -53,7 +86,18 @@ const countries = [
     bestTimeToVisit: "April to May and September to October are ideal for coastal resorts and city breaks. June to August is peak beach season on the Aegean and Mediterranean coasts.",
     packingTips: "Light clothing for coastal resorts in summer. Modest layers for visiting mosques — shoulders and knees should be covered. A light jacket for Istanbul evenings in spring and autumn.",
     ctaLabel: "Find Airport Hotels for Turkey",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '14–24°C', desc: 'One of the best times to visit — warm days, green landscapes and fewer tourists. Istanbul is particularly lovely with tulip festivals in April.' },
+      summer: { temp: '28–38°C', desc: 'Hot and dry on the Aegean and Mediterranean coasts, perfect for beach resorts. Istanbul is warm and busy with both heat and tourists.' },
+      autumn: { temp: '16–26°C', desc: 'Still warm on the coast through October. Cappadocia becomes magical with harvest colours and balloon flights in clear autumn skies.' },
+      winter: { temp: '3–12°C', desc: 'Cool and wet in Istanbul with occasional snow. The coasts are mild but quieter. Cappadocia can be blanketed in beautiful winter snow.' },
+    },
+    localTips: [
+      'The Turkish coast gets extremely hot in July and August — seek shade during the middle hours of the day.',
+      'Istanbul straddles two climates — the Bosphorus creates its own microclimate, so bring an extra layer for boat trips.',
+      'Hot air balloon flights over Cappadocia are best in spring and autumn when skies are clearest and winds most stable.',
+    ],
   },
   {
     slug: "portugal",
@@ -67,7 +111,18 @@ const countries = [
     bestTimeToVisit: "May to October for sunshine and beach weather. Spring and autumn are perfect for Lisbon city breaks — warm, manageable, and far less crowded than summer.",
     packingTips: "Light clothes for the Algarve. A light cardigan for Lisbon evenings, which can turn cool even in summer. Sun cream is essential year-round — Portugal's UV levels are high even in spring.",
     ctaLabel: "Find Airport Hotels for Portugal",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '14–22°C', desc: 'Lisbon blooms with jacaranda trees in May. The Algarve warms early and the Atlantic surf is bracing but beautiful. UV levels are already high.' },
+      summer: { temp: '25–35°C', desc: 'Long, hot and almost entirely rain-free. The Algarve beaches are superb but busy. Atlantic breezes keep Lisbon more comfortable than most European capitals.' },
+      autumn: { temp: '15–24°C', desc: 'Golden and warm well into October. Fewer tourists and lower prices make this an excellent time to visit. Wine harvest season is a wonderful bonus.' },
+      winter: { temp: '10–16°C', desc: 'Mild and sometimes rainy in Lisbon and Porto, but with many sunny days. The Algarve stays very pleasant with sunshine most days.' },
+    },
+    localTips: [
+      'Portugal\'s UV index is high even in spring — apply SPF 30+ daily and reapply throughout the day.',
+      'Atlantic winds on the western coast make the sea rougher and cooler than the Algarve\'s south-facing beaches.',
+      'Lisbon\'s hills and cobblestone streets can be slippery in winter rain — choose footwear with good grip.',
+    ],
   },
   {
     slug: "italy",
@@ -81,7 +136,18 @@ const countries = [
     bestTimeToVisit: "April to June and September to October across most of Italy — pleasant temperatures for sightseeing and the countryside at its greenest. July and August are peak beach season in the south.",
     packingTips: "Comfortable walking shoes are essential — Italian cities are made for exploring on foot. Modest clothing for churches and religious sites (covered shoulders and knees). Layers for the north in shoulder seasons.",
     ctaLabel: "Find Airport Hotels for Italy",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '12–22°C', desc: 'Rome and Florence are stunning with blossom and far fewer tourists than summer. The Italian Lakes reflect snow-capped Alps in crisp, clear light.' },
+      summer: { temp: '26–35°C', desc: 'Hot and sunny, especially in the south. The Amalfi Coast and Sicily are at their vivid best. Major cities can feel oppressively hot in August.' },
+      autumn: { temp: '14–24°C', desc: 'Warm and golden — ideal for food and wine tourism. The countryside turns spectacular shades and September sea temperatures remain very inviting.' },
+      winter: { temp: '4–12°C', desc: 'Cool in the north and centre, mild in the south. Venice is atmospheric and crowd-free in winter. The Dolomites offer excellent skiing from December.' },
+    },
+    localTips: [
+      'Many Italian city-dwellers leave in August — some restaurants close but tourist sites are at their most crowded.',
+      'Afternoon thunderstorms are common in the Alps and Dolomites in summer — plan mountain walks for the morning.',
+      'Dress codes at churches and religious sites are strictly enforced — always carry a scarf or light layer to cover up.',
+    ],
   },
   {
     slug: "croatia",
@@ -95,7 +161,18 @@ const countries = [
     bestTimeToVisit: "June to September for Adriatic beaches and island hopping. May and October offer warm days, quieter towns, and noticeably lower prices — ideal for those wanting to avoid the summer rush.",
     packingTips: "Light summer clothing for the coast. Good walking shoes for Dubrovnik's steep old town streets. Reef-safe sun cream for the crystal-clear Adriatic. A light layer for cooler evenings in spring and autumn.",
     ctaLabel: "Find Airport Hotels for Croatia",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '12–22°C', desc: 'Dubrovnik and the Dalmatian coast are peaceful and beautiful in spring. The Plitvice Lakes National Park is at its most spectacular with high waterfalls.' },
+      summer: { temp: '26–34°C', desc: 'Peak season with warm sea, abundant sunshine and a lively atmosphere. The Adriatic reaches 26°C and the islands are buzzing with visitors.' },
+      autumn: { temp: '14–24°C', desc: 'September feels like a second summer — warm, sunny and noticeably quieter. October brings dramatic light and russet colours to the national parks.' },
+      winter: { temp: '5–12°C', desc: 'Mild on the coast but quiet, with many tourist businesses closed. Zagreb celebrates an acclaimed Advent market through December.' },
+    },
+    localTips: [
+      'The Bura wind can blow cold off the mountains even on sunny days — pack a windproof layer for boat trips.',
+      'Dubrovnik gets extremely crowded in July and August — visit early morning or on foot to escape the cruise ship crowds.',
+      'June and September offer the best balance of warm sea temperatures and manageable crowds.',
+    ],
   },
   {
     slug: "cyprus",
@@ -109,7 +186,18 @@ const countries = [
     bestTimeToVisit: "April to June and September to November for warm but comfortable temperatures. December to March is excellent for a mild winter sun break, with pleasant days averaging around 17°C.",
     packingTips: "High-factor sun cream is essential in summer — the Cyprus sun is fierce. A light cover-up for evenings. Swimwear can be packed from April onwards, when the sea begins to warm up nicely.",
     ctaLabel: "Find Airport Hotels for Cyprus",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '18–26°C', desc: 'Warm and sunny with wild anemones carpeting the hillsides. Ideal for combining beach time with exploring Crusader castles and ancient ruins.' },
+      summer: { temp: '30–40°C', desc: 'Intensely hot and dry. Paphos and Limassol beaches are superb but midday is fierce. The Troodos Mountains offer a welcome cool retreat at altitude.' },
+      autumn: { temp: '20–30°C', desc: 'The sea stays beautifully warm through November and crowds thin from mid-September. One of the best times to enjoy Cyprus at its most relaxed.' },
+      winter: { temp: '10–18°C', desc: 'Mild and sunny by Northern European standards. You can ski on Mount Olympos in the Troodos and swim in the Mediterranean the same afternoon.' },
+    },
+    localTips: [
+      'The Cyprus sun is fierce — UV levels are extreme from April through October. SPF 50 is strongly recommended.',
+      'In summer, plan beach activities for before 11am or after 4pm to avoid the most intense midday heat.',
+      'Mount Olympos in the Troodos Mountains can receive snow from December to March — pack layers if you plan to visit.',
+    ],
   },
   {
     slug: "malta",
@@ -123,7 +211,18 @@ const countries = [
     bestTimeToVisit: "April to June and September to October for ideal temperatures and manageable crowds. Winter breaks are popular too — mild, sunny days make Malta a great escape from Northern European grey.",
     packingTips: "Light summer clothes and sun cream for the warm months. Comfortable shoes for walking Valletta's hilly streets. A light cardigan for winter evenings. Bring a water bottle — it gets hot and staying hydrated matters.",
     ctaLabel: "Find Airport Hotels for Malta",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '16–24°C', desc: 'Arguably the best time to visit — warm, bright and carpeted in wild flowers. The Maltese spring is short but spectacular with clear skies and comfortable warmth.' },
+      summer: { temp: '28–34°C', desc: 'Hot, sunny and almost entirely rain-free. Sea temperatures reach 27°C and the island thrums with visitors. Village festa celebrations add to the vibrant atmosphere.' },
+      autumn: { temp: '20–28°C', desc: 'October and November are excellent — the sea is still warm, crowds have thinned and prices drop noticeably. Ideal for combining sea and sightseeing.' },
+      winter: { temp: '12–18°C', desc: 'Mild and mostly sunny with some winter rain. Malta is a fantastic winter break destination — far warmer than Northern Europe and never truly cold.' },
+    },
+    localTips: [
+      'Malta has very little natural shade outdoors — a hat and high-factor sunscreen are essential from April through October.',
+      'The Sirocco wind from North Africa can blow hot and dusty air across Malta in summer, raising temperatures noticeably.',
+      'Even in winter, pack light clothing for daytime — temperatures regularly reach 18°C and the sun shines year-round.',
+    ],
   },
   {
     slug: "egypt",
@@ -137,7 +236,18 @@ const countries = [
     bestTimeToVisit: "October to April for sightseeing along the Nile and visiting the pyramids and temples. Red Sea resorts are popular year-round, with the water warm and visibility excellent in all seasons.",
     packingTips: "Light, loose, breathable clothing year-round. A sun hat and high-factor SPF are non-negotiable. Modest layers are important for visiting temples and mosques — shoulders and knees should be covered.",
     ctaLabel: "Find Airport Hotels for Egypt",
-    ctaUrl: "https://www.holidayextras.com/hotels.html"
+    ctaUrl: "https://www.holidayextras.com/hotels.html",
+    seasons: {
+      spring: { temp: '20–32°C', desc: 'Warming quickly with long sunny days. The Khamsin desert wind can bring sand and reduced visibility in April, but typically passes quickly.' },
+      summer: { temp: '35–43°C', desc: 'Extremely hot in Cairo and Upper Egypt. Red Sea resorts are cooled by sea breezes and remain popular. Sunrise sightseeing is the only sensible option.' },
+      autumn: { temp: '22–34°C', desc: 'Temperatures ease and sightseeing becomes more comfortable from October. The Red Sea diving conditions are superb and the light is golden and beautiful.' },
+      winter: { temp: '12–22°C', desc: 'Perfect for visiting ancient monuments with pleasant daytime temperatures. Cairo nights can be surprisingly cool — bring layers for after dark.' },
+    },
+    localTips: [
+      'Visit the Pyramids and Valley of the Kings at opening time — both to beat the heat and to get ahead of the tour groups.',
+      'Bottled water is essential — tap water is not recommended for drinking and staying hydrated in the heat is critical.',
+      'The Red Sea offers superb diving and snorkelling year-round, but December to March is particularly calm and clear.',
+    ],
   }
 ];
 
