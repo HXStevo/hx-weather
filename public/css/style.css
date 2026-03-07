@@ -2592,3 +2592,187 @@ img {
   vertical-align: middle;
   margin-right: 0.5rem;
 }
+
+/* ===========================
+   7-Day Forecast Strip
+   =========================== */
+
+.forecast-strip-section {
+  background: var(--white);
+  border-bottom: 2px solid var(--border);
+}
+
+.forecast-strip {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.forecast-strip::-webkit-scrollbar { display: none; }
+
+.fsd-btn {
+  flex: 1;
+  min-width: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.75rem 0.4rem 0.6rem;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.fsd-btn:hover { background: var(--hx-purple-light); }
+
+.fsd-btn--active {
+  border-bottom-color: var(--hx-purple);
+  background: var(--hx-purple-light);
+}
+
+.fsd-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.fsd-date {
+  font-size: 0.65rem;
+  color: var(--text-light);
+  line-height: 1;
+}
+
+.fsd-emoji {
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.fsd-max {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.fsd-min {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  line-height: 1;
+}
+
+/* Future day summary panel */
+.future-day-summary {
+  padding: 1.5rem 1.25rem;
+}
+
+.future-day-temps {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.future-temp-high {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--hx-purple);
+}
+
+.future-temp-slash {
+  font-size: 1.5rem;
+  color: var(--text-light);
+}
+
+.future-temp-low {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.future-day-note {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+}
+
+/* ===========================
+   Static Map (OSM iframe)
+   =========================== */
+
+.static-map-container {
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+}
+
+.static-map-iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.smap-marker {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  z-index: 10;
+  transition: transform 0.15s;
+}
+
+.smap-marker:hover { transform: translate(-50%, -105%) scale(1.1); }
+
+.smap-marker__bubble {
+  background: var(--white);
+  border: 2px solid var(--hx-purple);
+  border-radius: 20px;
+  padding: 2px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(84,46,145,0.3);
+  white-space: nowrap;
+}
+
+.smap-marker__flag { font-size: 0.95rem; line-height: 1.3; }
+
+.smap-marker__temp {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--hx-purple);
+  line-height: 1;
+}
+
+.smap-marker__pin {
+  width: 2px;
+  height: 7px;
+  background: var(--hx-purple);
+}
+
+.map-attribution {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  padding: 0.4rem 1rem;
+  text-align: right;
+}
+
+.map-attribution a { color: var(--text-light); }
+
+/* Update windsurfer SVG sizing */
+.hxf-banner__windsurfer {
+  height: 50px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}

@@ -118,7 +118,7 @@ async function fetchCountryImage(capital, countryName) {
 }
 
 async function fetchWeather(lat, lon) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,weathercode,apparent_temperature,surface_pressure,visibility,precipitation_probability&daily=sunrise,sunset,daylight_duration&timezone=auto&forecast_days=2`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,weathercode,apparent_temperature,surface_pressure,visibility,precipitation_probability&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max,sunrise,sunset,daylight_duration&timezone=auto&forecast_days=7`;
   const response = await fetch(url);
   if (!response.ok) throw new Error(`Weather API error: ${response.status}`);
   const data = await response.json();
@@ -168,6 +168,30 @@ async function fetchWeather(lat, lon) {
   const sfx = [11,12,13].includes(dy) ? 'th' : dy%10===1?'st':dy%10===2?'nd':dy%10===3?'rd':'th';
   const dateLabel = `${dy}${sfx} ${months[mo-1]} ${yr}`;
 
+  // 7-day daily forecast
+  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const shortMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const forecast7day = (data.daily?.time || []).map((dateStr, i) => {
+    const d = new Date(dateStr + 'T12:00:00Z');
+    const wInfo = getWeatherInfo(data.daily.weathercode[i]);
+    const daylightSec = data.daily.daylight_duration?.[i] || 0;
+    return {
+      date: dateStr,
+      dayLabel: i === 0 ? 'Today' : dayNames[d.getUTCDay()],
+      dateLabel: `${d.getUTCDate()} ${shortMonths[d.getUTCMonth()]}`,
+      emoji: wInfo.emoji,
+      condition: wInfo.label,
+      tempMax: Math.round(data.daily.temperature_2m_max[i]),
+      tempMin: Math.round(data.daily.temperature_2m_min[i]),
+      precipProbability: data.daily.precipitation_probability_max?.[i] ?? 0,
+      windSpeed: Math.round(data.daily.windspeed_10m_max?.[i] ?? 0),
+      sunrise: (data.daily.sunrise?.[i] || '').split('T')[1]?.substring(0, 5) || '—',
+      sunset: (data.daily.sunset?.[i] || '').split('T')[1]?.substring(0, 5) || '—',
+      daylightH: Math.floor(daylightSec / 3600),
+      daylightM: Math.floor((daylightSec % 3600) / 60),
+    };
+  });
+
   return {
     temperature: Math.round(current.temperature),
     condition: weatherInfo.label,
@@ -184,6 +208,7 @@ async function fetchWeather(lat, lon) {
     daylightM,
     nextHours,
     dateLabel,
+    forecast7day,
   };
 }
 

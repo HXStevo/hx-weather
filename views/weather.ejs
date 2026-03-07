@@ -42,29 +42,128 @@
   </div>
   <% } %>
 
+  <!-- 7-Day Forecast Strip -->
+  <% if (weather.forecast7day && weather.forecast7day.length) { %>
+  <section class="forecast-strip-section">
+    <div class="container">
+      <div class="forecast-strip" id="forecast-strip" role="tablist" aria-label="7-day forecast">
+        <% weather.forecast7day.forEach(function(day, i) { %>
+        <button class="fsd-btn<%= i === 0 ? ' fsd-btn--active' : '' %>"
+                role="tab"
+                aria-selected="<%= i === 0 ? 'true' : 'false' %>"
+                data-day="<%= i %>"
+                onclick="selectDay(<%= i %>)">
+          <span class="fsd-label"><%= day.dayLabel %></span>
+          <span class="fsd-date"><%= day.dateLabel %></span>
+          <span class="fsd-emoji"><%= day.emoji %></span>
+          <span class="fsd-max"><%= day.tempMax %>°</span>
+          <span class="fsd-min"><%= day.tempMin %>°</span>
+        </button>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
   <!-- Weather Snapshot -->
   <section class="weather-snapshot-section">
     <div class="container">
       <div class="weather-card">
-        <div class="weather-emoji"><%= weather.emoji %></div>
-        <div class="weather-condition"><%= weather.condition %></div>
+        <div class="weather-emoji" id="wc-emoji"><%= weather.emoji %></div>
+        <div class="weather-condition" id="wc-condition"><%= weather.condition %></div>
         <div class="weather-stats">
           <div class="weather-stat">
-            <span class="stat-value"><%= weather.temperature %>°C</span>
-            <span class="stat-label"><%= t.temperature %></span>
+            <span class="stat-value" id="wc-temp"><%= weather.temperature %>°C</span>
+            <span class="stat-label" id="wc-temp-label"><%= t.temperature %></span>
           </div>
           <div class="weather-stat-divider"></div>
           <div class="weather-stat">
-            <span class="stat-value"><%= weather.precipProbability %>%</span>
+            <span class="stat-value" id="wc-rain"><%= weather.precipProbability %>%</span>
             <span class="stat-label"><%= t.rainChance %></span>
           </div>
           <div class="weather-stat-divider"></div>
           <div class="weather-stat">
-            <span class="stat-value"><%= weather.windSpeed %> km/h</span>
+            <span class="stat-value" id="wc-wind"><%= weather.windSpeed %> km/h</span>
             <span class="stat-label"><%= t.windSpeed %></span>
           </div>
         </div>
-        <p class="weather-updated"><%= t.updatedLive %></p>
+        <p class="weather-updated" id="wc-updated"><%= t.updatedLive %></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forecast Section -->
+  <section class="forecast-section">
+    <div class="container">
+      <div class="forecast-grid">
+
+        <!-- Hourly panel (today only) -->
+        <div class="forecast-hourly" id="hourly-panel">
+          <div class="forecast-hourly__header">
+            <h2><%= country.country %>: <span id="hourly-title">Next 24-Hour Weather</span></h2>
+            <p class="forecast-date" id="hourly-date">Today — <%= weather.dateLabel %></p>
+          </div>
+          <div class="forecast-sunrow">
+            <div class="forecast-sun">
+              <span class="forecast-sun__icon">🌅</span>
+              <span class="forecast-sun__label">SUNRISE</span>
+              <span class="forecast-sun__time" id="fs-sunrise"><%= weather.sunrise %></span>
+            </div>
+            <div class="forecast-sun">
+              <span class="forecast-sun__icon">🌇</span>
+              <span class="forecast-sun__label">SUNSET</span>
+              <span class="forecast-sun__time" id="fs-sunset"><%= weather.sunset %></span>
+            </div>
+          </div>
+          <!-- Today's hourly slots -->
+          <ul class="forecast-slots" id="hourly-slots">
+            <% weather.nextHours.forEach(slot => { %>
+            <li class="forecast-slot">
+              <span class="forecast-slot__time"><%= slot.time %></span>
+              <span class="forecast-slot__emoji"><%= slot.emoji %></span>
+              <span class="forecast-slot__temp"><%= slot.temp %>°C</span>
+            </li>
+            <% }) %>
+          </ul>
+          <!-- Future day summary (hidden by default) -->
+          <div class="future-day-summary" id="future-day-summary" style="display:none">
+            <div class="future-day-temps">
+              <span class="future-temp-high" id="fdp-max"></span>
+              <span class="future-temp-slash">/</span>
+              <span class="future-temp-low" id="fdp-min"></span>
+            </div>
+            <p class="future-day-note" id="fdp-note"></p>
+          </div>
+        </div>
+
+        <!-- Stats panel -->
+        <div class="forecast-stats">
+          <div class="forecast-stat-row">
+            <span class="forecast-stat-row__label">Temp feels like</span>
+            <span class="forecast-stat-row__value" id="fs-feels"><%= weather.feelsLike %>°C</span>
+          </div>
+          <div class="forecast-stat-row">
+            <span class="forecast-stat-row__label">Length of day</span>
+            <span class="forecast-stat-row__value" id="fs-daylight"><%= weather.daylightH %>h <%= weather.daylightM %>m</span>
+          </div>
+          <div class="forecast-stat-row">
+            <span class="forecast-stat-row__label">Pressure</span>
+            <span class="forecast-stat-row__value" id="fs-pressure"><%= weather.pressure %> hpa</span>
+          </div>
+          <div class="forecast-stat-row">
+            <span class="forecast-stat-row__label">Visibility</span>
+            <span class="forecast-stat-row__value" id="fs-vis"><%= weather.visibility %> km</span>
+          </div>
+          <div class="forecast-stat-row">
+            <span class="forecast-stat-row__label">Wind speed</span>
+            <span class="forecast-stat-row__value" id="fs-wind"><%= weather.windSpeed %> km/h</span>
+          </div>
+          <div class="forecast-stat-row">
+            <span class="forecast-stat-row__label">Rain chance</span>
+            <span class="forecast-stat-row__value" id="fs-rain"><%= weather.precipProbability %>%</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -160,6 +259,71 @@
       </a>
     </div>
   </section>
+
+  <script>
+    (function () {
+      const todayData = {
+        emoji: '<%- weather.emoji %>',
+        condition: '<%- weather.condition.replace(/'/g, "\\'") %>',
+        temperature: <%= weather.temperature %>,
+        precipProbability: <%= weather.precipProbability %>,
+        windSpeed: <%= weather.windSpeed %>,
+        feelsLike: <%= weather.feelsLike %>,
+        pressure: <%= weather.pressure %>,
+        visibility: <%= weather.visibility %>,
+        daylightH: <%= weather.daylightH %>,
+        daylightM: <%= weather.daylightM %>,
+        sunrise: '<%= weather.sunrise %>',
+        sunset: '<%= weather.sunset %>',
+        dateLabel: '<%= weather.dateLabel %>',
+      };
+      const forecast7day = <%- JSON.stringify(weather.forecast7day || []) %>;
+
+      window.selectDay = function (i) {
+        // Update tab active state
+        document.querySelectorAll('.fsd-btn').forEach(function (btn, j) {
+          btn.classList.toggle('fsd-btn--active', i === j);
+          btn.setAttribute('aria-selected', i === j ? 'true' : 'false');
+        });
+
+        const day = forecast7day[i];
+        const isToday = (i === 0);
+
+        // Update weather card
+        document.getElementById('wc-emoji').textContent = day.emoji;
+        document.getElementById('wc-condition').textContent = day.condition;
+        document.getElementById('wc-temp').textContent = isToday ? (todayData.temperature + '°C') : (day.tempMax + '°C');
+        document.getElementById('wc-temp-label').textContent = isToday ? '<%= t.temperature %>' : 'High';
+        document.getElementById('wc-rain').textContent = day.precipProbability + '%';
+        document.getElementById('wc-wind').textContent = day.windSpeed + ' km/h';
+        document.getElementById('wc-updated').style.display = isToday ? '' : 'none';
+
+        // Update stats panel
+        document.getElementById('fs-sunrise').textContent = day.sunrise;
+        document.getElementById('fs-sunset').textContent = day.sunset;
+        document.getElementById('fs-daylight').textContent = day.daylightH + 'h ' + day.daylightM + 'm';
+        document.getElementById('fs-wind').textContent = day.windSpeed + ' km/h';
+        document.getElementById('fs-rain').textContent = day.precipProbability + '%';
+        document.getElementById('fs-feels').textContent = isToday ? (todayData.feelsLike + '°C') : (day.tempMax + '°C');
+        document.getElementById('fs-pressure').textContent = isToday ? (todayData.pressure + ' hpa') : '—';
+        document.getElementById('fs-vis').textContent = isToday ? (todayData.visibility + ' km') : '—';
+
+        // Today: show hourly slots, hide future summary
+        // Future: hide hourly slots, show future summary
+        document.getElementById('hourly-slots').style.display = isToday ? '' : 'none';
+        document.getElementById('future-day-summary').style.display = isToday ? 'none' : '';
+        document.getElementById('hourly-date').textContent = isToday
+          ? ('Today — ' + todayData.dateLabel)
+          : (day.dayLabel + ' — ' + day.dateLabel);
+
+        if (!isToday) {
+          document.getElementById('fdp-max').textContent = day.tempMax + '°C';
+          document.getElementById('fdp-min').textContent = day.tempMin + '°C';
+          document.getElementById('fdp-note').textContent = day.condition + ' · ' + day.precipProbability + '% rain · ' + day.windSpeed + ' km/h wind';
+        }
+      };
+    })();
+  </script>
 
   <%- include('partials/footer') %>
 

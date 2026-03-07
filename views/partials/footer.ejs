@@ -6,8 +6,25 @@
 <div class="hxf-banner">
   <div class="container hxf-banner__inner">
     <div class="hxf-banner__message">
-      <img src="https://dmy0b9oeprz0f.cloudfront.net/holidayextras.co.uk/images/windsurfers.png" alt="Holiday Extras windsurfers" class="hxf-banner__windsurfer" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
-      <span style="display:none">🏄‍♂️</span>
+      <!-- Three windsurfer silhouettes SVG -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 56" class="hxf-banner__windsurfer" aria-hidden="true">
+        <!-- Water wave -->
+        <path d="M0,49 Q25,45 50,49 Q75,53 100,49 Q125,45 150,49 L150,56 L0,56Z" fill="white" opacity="0.3"/>
+        <!-- Windsurfer 1 (small, left): sail sweeps right from mast -->
+        <ellipse cx="21" cy="42" rx="11" ry="1.5" fill="white"/>
+        <path d="M18,40 L18,23 Q32,26 32,38 Z" fill="white"/>
+        <circle cx="20" cy="39" r="2" fill="white"/>
+        <!-- Windsurfer 2 (medium, centre) -->
+        <ellipse cx="72" cy="41" rx="15" ry="2" fill="white"/>
+        <path d="M68,38 L68,10 Q90,15 89,35 Z" fill="white"/>
+        <circle cx="70" cy="36" r="2.8" fill="white"/>
+        <!-- Windsurfer 3 (large, right) with hydrofoil -->
+        <ellipse cx="121" cy="38" rx="20" ry="2.5" fill="white"/>
+        <path d="M115,35 L115,2 Q142,9 141,30 Z" fill="white"/>
+        <circle cx="117" cy="32" r="3.5" fill="white"/>
+        <line x1="121" y1="40" x2="121" y2="49" stroke="white" stroke-width="1.5"/>
+        <line x1="111" y1="49" x2="131" y2="49" stroke="white" stroke-width="2.5"/>
+      </svg>
       <span><%= locals.t ? t.footerBannerText : 'Proud to back Olympic and world-record windsurfers' %></span>
     </div>
     <div class="hxf-banner__signup">
