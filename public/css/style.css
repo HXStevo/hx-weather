@@ -2776,3 +2776,68 @@ img {
   margin-right: 0.75rem;
   flex-shrink: 0;
 }
+
+/* ===========================
+   Trip Search — Date field UX
+   =========================== */
+
+/* Wrap each date field so clicking anywhere in the row opens picker */
+.trip-search__field--date {
+  cursor: pointer;
+}
+
+.trip-search__date {
+  cursor: pointer;
+  min-height: 44px;
+}
+
+/* ===========================
+   Trip Search — Mobile
+   =========================== */
+
+@media (max-width: 640px) {
+  /* Stack dates vertically on narrow screens */
+  .trip-search__dates {
+    grid-template-columns: 1fr;
+  }
+
+  /* Give form fields more breathing room */
+  .trip-search__field {
+    padding: 0.5rem 1rem 0;
+  }
+
+  /* Bigger touch targets */
+  .trip-search__select,
+  .trip-search__date {
+    padding: 0.75rem 0.9rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+
+  .trip-search__select {
+    padding-right: 2.25rem;
+  }
+
+  .trip-search__btn {
+    margin: 1rem;
+    width: calc(100% - 2rem);
+    padding: 0.95rem;
+    font-size: 1.05rem;
+  }
+
+  /* Full-width widget on mobile */
+  .trip-search-widget {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Prevent local weather card + trip form from side-by-side on small screens */
+  .local-weather-row {
+    flex-direction: column;
+  }
+
+  .local-weather-card {
+    min-width: 0;
+    width: 100%;
+  }
+}
