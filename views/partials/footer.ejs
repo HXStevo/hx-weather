@@ -6,13 +6,15 @@
 <div class="hxf-banner">
   <div class="container hxf-banner__inner">
     <div class="hxf-banner__message">
-      <span>Proud to back Olympic and world-record windsurfers</span>
+      <img src="https://dmy0b9oeprz0f.cloudfront.net/holidayextras.co.uk/images/windsurfers.png" alt="Holiday Extras windsurfers" class="hxf-banner__windsurfer" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
+      <span style="display:none">🏄‍♂️</span>
+      <span><%= locals.t ? t.footerBannerText : 'Proud to back Olympic and world-record windsurfers' %></span>
     </div>
     <div class="hxf-banner__signup">
-      <p class="hxf-banner__signup-label">Stay in touch</p>
+      <p class="hxf-banner__signup-label"><%= locals.t ? t.footerStayInTouch : 'Stay in touch' %></p>
       <form class="hxf-banner__form" action="https://www.holidayextras.com/newsletter" method="post">
-        <input type="email" placeholder="Your email address" class="hxf-banner__input" aria-label="Email address" />
-        <button type="submit" class="hxf-banner__btn">Join</button>
+        <input type="email" placeholder="<%= locals.t ? t.footerEmailPlaceholder : 'Your email address' %>" class="hxf-banner__input" aria-label="Email address" />
+        <button type="submit" class="hxf-banner__btn"><%= locals.t ? t.footerJoin : 'Join' %></button>
       </form>
     </div>
   </div>
@@ -24,7 +26,7 @@
 
     <!-- Brand Column -->
     <div class="hxf-col hxf-col--brand">
-      <p class="hxf-tagline">Less Hassle. More Holiday.</p>
+      <p class="hxf-tagline"><%= locals.t ? t.footerTagline : 'Less Hassle. More Holiday.' %></p>
 
       <!-- Social Icons -->
       <div class="hxf-social">
@@ -76,22 +78,22 @@
 
     <!-- Link Column: Everything for your trip -->
     <div class="hxf-col hxf-col--links">
-      <h4 class="hxf-col__title">Everything for your trip</h4>
+      <h4 class="hxf-col__title"><%= locals.t ? t.footerCol1 : 'Everything for your trip' %></h4>
       <ul class="hxf-links">
-        <li><a href="https://www.holidayextras.com/airport-parking.html">Airport Parking</a></li>
-        <li><a href="https://www.holidayextras.com/airport-hotels.html">Airport Hotels</a></li>
-        <li><a href="https://www.holidayextras.com/airport-parking-hotels.html">Airport Parking and Hotels</a></li>
-        <li><a href="https://www.holidayextras.com/airport-fast-track.html">Airport Fast Track</a></li>
-        <li><a href="https://www.holidayextras.com/car-hire.html">Car Hire</a></li>
-        <li><a href="https://www.holidayextras.com/airport-transfers.html">Airport Transfers</a></li>
-        <li><a href="https://www.holidayextras.com/travel-insurance.html">Travel Insurance</a></li>
-        <li><a href="https://www.holidayextras.com/port-parking-hotels.html">Port Parking &amp; Hotels</a></li>
+        <li><a href="https://www.holidayextras.com/airport-parking.html"><%= locals.t ? t.footerAirportParking : 'Airport Parking' %></a></li>
+        <li><a href="https://www.holidayextras.com/airport-hotels.html"><%= locals.t ? t.footerAirportHotels : 'Airport Hotels' %></a></li>
+        <li><a href="https://www.holidayextras.com/airport-parking-hotels.html"><%= locals.t ? t.footerParkingHotels : 'Airport Parking and Hotels' %></a></li>
+        <li><a href="https://www.holidayextras.com/airport-fast-track.html"><%= locals.t ? t.footerFastTrack : 'Airport Fast Track' %></a></li>
+        <li><a href="https://www.holidayextras.com/car-hire.html"><%= locals.t ? t.footerCarHire : 'Car Hire' %></a></li>
+        <li><a href="https://www.holidayextras.com/airport-transfers.html"><%= locals.t ? t.footerTransfers : 'Airport Transfers' %></a></li>
+        <li><a href="https://www.holidayextras.com/travel-insurance.html"><%= locals.t ? t.footerTravelInsurance : 'Travel Insurance' %></a></li>
+        <li><a href="https://www.holidayextras.com/port-parking-hotels.html"><%= locals.t ? t.footerPortParking : 'Port Parking & Hotels' %></a></li>
       </ul>
     </div>
 
     <!-- Link Column: Park at your airport -->
     <div class="hxf-col hxf-col--links">
-      <h4 class="hxf-col__title">Park at your airport</h4>
+      <h4 class="hxf-col__title"><%= locals.t ? t.footerCol2 : 'Park at your airport' %></h4>
       <ul class="hxf-links">
         <li><a href="https://www.holidayextras.com/gatwick-airport-parking.html">Gatwick</a></li>
         <li><a href="https://www.holidayextras.com/heathrow-airport-parking.html">Heathrow</a></li>
@@ -109,7 +111,7 @@
 
     <!-- Link Column: Stay at your airport -->
     <div class="hxf-col hxf-col--links">
-      <h4 class="hxf-col__title">Stay at your airport</h4>
+      <h4 class="hxf-col__title"><%= locals.t ? t.footerCol3 : 'Stay at your airport' %></h4>
       <ul class="hxf-links">
         <li><a href="https://www.holidayextras.com/gatwick-airport-hotels.html">Gatwick</a></li>
         <li><a href="https://www.holidayextras.com/heathrow-airport-hotels.html">Heathrow</a></li>
@@ -127,21 +129,21 @@
 
     <!-- Link Column: Help and support -->
     <div class="hxf-col hxf-col--links">
-      <h4 class="hxf-col__title">Help and support</h4>
+      <h4 class="hxf-col__title"><%= locals.t ? t.footerCol4 : 'Help and support' %></h4>
       <ul class="hxf-links">
-        <li><a href="https://www.holidayextras.com/manage-my-booking.html">Manage My Booking</a></li>
-        <li><a href="https://www.holidayextras.com/refunds.html">Refunds</a></li>
+        <li><a href="https://www.holidayextras.com/manage-my-booking.html"><%= locals.t ? t.footerManageBooking : 'Manage My Booking' %></a></li>
+        <li><a href="https://www.holidayextras.com/refunds.html"><%= locals.t ? t.footerRefunds : 'Refunds' %></a></li>
       </ul>
     </div>
 
     <!-- Link Column: Find out more -->
     <div class="hxf-col hxf-col--links">
-      <h4 class="hxf-col__title">Find out more</h4>
+      <h4 class="hxf-col__title"><%= locals.t ? t.footerCol5 : 'Find out more' %></h4>
       <ul class="hxf-links">
-        <li><a href="https://www.holidayextras.com/about-us.html">About Us</a></li>
-        <li><a href="https://www.holidayextras.com/careers.html">Careers</a></li>
-        <li><a href="https://www.holidayextras.com/sustainability.html">Sustainability</a></li>
-        <li><a href="https://www.holidayextras.com/accessibility.html">Accessibility</a></li>
+        <li><a href="https://www.holidayextras.com/about-us.html"><%= locals.t ? t.footerAboutUs : 'About Us' %></a></li>
+        <li><a href="https://www.holidayextras.com/careers.html"><%= locals.t ? t.footerCareers : 'Careers' %></a></li>
+        <li><a href="https://www.holidayextras.com/sustainability.html"><%= locals.t ? t.footerSustainability : 'Sustainability' %></a></li>
+        <li><a href="https://www.holidayextras.com/accessibility.html"><%= locals.t ? t.footerAccessibility : 'Accessibility' %></a></li>
       </ul>
     </div>
 
@@ -152,10 +154,10 @@
     <div class="container hxf-bottom__inner">
       <p class="hxf-copyright">© Holiday Extras <%= new Date().getFullYear() %></p>
       <nav class="hxf-legal" aria-label="Legal links">
-        <a href="https://www.holidayextras.com/hx-terms-and-conditions.html">Terms and Conditions</a>
-        <a href="https://www.holidayextras.com/cookies.html">Cookie Policy</a>
-        <a href="https://www.holidayextras.com/privacy-policy.html">Privacy Policy</a>
-        <a href="https://www.holidayextras.com/slavery-human-trafficking-statement.html">Modern Slavery Agreement</a>
+        <a href="https://www.holidayextras.com/hx-terms-and-conditions.html"><%= locals.t ? t.footerTerms : 'Terms and Conditions' %></a>
+        <a href="https://www.holidayextras.com/cookies.html"><%= locals.t ? t.footerCookies : 'Cookie Policy' %></a>
+        <a href="https://www.holidayextras.com/privacy-policy.html"><%= locals.t ? t.footerPrivacy : 'Privacy Policy' %></a>
+        <a href="https://www.holidayextras.com/slavery-human-trafficking-statement.html"><%= locals.t ? t.footerSlavery : 'Modern Slavery Agreement' %></a>
       </nav>
     </div>
   </div>

@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 // v1.1.0 — HX logo, nav links, strapline
 const express = require('express');
 const fetch = require('node-fetch');
@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const countries = require('./data/countries');
+const blogPosts = require('./data/blog');
 
 // Locale support
 const locales = {
@@ -20,10 +21,10 @@ const SUPPORTED_LANGS = ['de', 'fr', 'es', 'it'];
 const BASE_URL = process.env.BASE_URL || 'https://web-production-17f8.up.railway.app';
 
 function buildAlternates(englishSlug) {
-  const alts = [{ lang: 'en', href: `${BASE_URL}/weather/${englishSlug}` }];
+  const alts = [{ lang: 'en', href: `/weather/${englishSlug}` }];
   SUPPORTED_LANGS.forEach(lang => {
     const c = locales[lang].countries[englishSlug];
-    if (c) alts.push({ lang, href: `${BASE_URL}/weather/${lang}/${c.slug}` });
+    if (c) alts.push({ lang, href: `/weather/${lang}/${c.slug}` });
   });
   return alts;
 }
@@ -117,7 +118,7 @@ async function fetchCountryImage(capital, countryName) {
 }
 
 async function fetchWeather(lat, lon) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=precipitation_probability&timezone=auto`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,weathercode,apparent_temperature,surface_pressure,visibility,precipitation_probability&daily=sunrise,sunset,daylight_duration&timezone=auto&forecast_days=2`;
   const response = await fetch(url);
   if (!response.ok) throw new Error(`Weather API error: ${response.status}`);
   const data = await response.json();
@@ -137,6 +138,36 @@ async function fetchWeather(lat, lon) {
   const precipProbability = hourlyPrecip[precipIndex] ?? 0;
   const weatherInfo = getWeatherInfo(current.weathercode);
 
+  // Extra stats at current hour
+  const feelsLike = Math.round(data.hourly.apparent_temperature?.[precipIndex] ?? current.temperature);
+  const pressure = Math.round(data.hourly.surface_pressure?.[precipIndex] ?? 1013);
+  const visibility = Math.round((data.hourly.visibility?.[precipIndex] ?? 10000) / 1000);
+
+  // Next 8 hourly slots
+  const nextHours = [];
+  for (let i = 0; i < 8; i++) {
+    const idx = precipIndex + i;
+    if (idx >= hourlyTimes.length) break;
+    nextHours.push({
+      time: hourlyTimes[idx].split('T')[1].substring(0, 5),
+      temp: Math.round(data.hourly.temperature_2m[idx]),
+      ...getWeatherInfo(data.hourly.weathercode[idx]),
+    });
+  }
+
+  // Sunrise / sunset / daylight
+  const sunrise = (data.daily.sunrise?.[0] || '').split('T')[1]?.substring(0, 5) || '—';
+  const sunset  = (data.daily.sunset?.[0]  || '').split('T')[1]?.substring(0, 5) || '—';
+  const daylightSec = data.daily.daylight_duration?.[0] || 0;
+  const daylightH = Math.floor(daylightSec / 3600);
+  const daylightM = Math.floor((daylightSec % 3600) / 60);
+
+  // Date label
+  const [yr, mo, dy] = currentTime.split('T')[0].split('-').map(Number);
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const sfx = [11,12,13].includes(dy) ? 'th' : dy%10===1?'st':dy%10===2?'nd':dy%10===3?'rd':'th';
+  const dateLabel = `${dy}${sfx} ${months[mo-1]} ${yr}`;
+
   return {
     temperature: Math.round(current.temperature),
     condition: weatherInfo.label,
@@ -144,6 +175,15 @@ async function fetchWeather(lat, lon) {
     windSpeed: Math.round(current.windspeed),
     precipProbability,
     wmoCode: current.weathercode,
+    feelsLike,
+    pressure,
+    visibility,
+    sunrise,
+    sunset,
+    daylightH,
+    daylightM,
+    nextHours,
+    dateLabel,
   };
 }
 
@@ -183,8 +223,83 @@ app.get('/logout', (req, res) => {
 // ===========================
 // App routes
 // ===========================
-app.get('/', (req, res) => {
-  res.render('index', { countries, user: req.user || null });
+const HOME_ALTERNATES = [
+  { lang: 'en', href: '/' },
+  { lang: 'de', href: '/de' },
+  { lang: 'fr', href: '/fr' },
+  { lang: 'es', href: '/es' },
+  { lang: 'it', href: '/it' },
+];
+
+function buildDisplayCountries(lang) {
+  return countries.map(c => {
+    const lc = lang === 'en' ? null : locales[lang].countries[c.slug];
+    return { ...c, displayName: lc ? lc.country : c.country, localSlug: lc ? lc.slug : c.slug };
+  });
+}
+
+app.get('/', async (req, res) => {
+  const [weatherResults, blogImages] = await Promise.all([
+    Promise.all(countries.map(c => fetchWeather(c.lat, c.lon).catch(() => null))),
+    Promise.all(blogPosts.map(p => fetchCountryImage(p.wikiQuery, p.wikiQuery).catch(() => null))),
+  ]);
+  const weatherMap = {};
+  countries.forEach((c, i) => { weatherMap[c.slug] = weatherResults[i]; });
+  const enrichedPosts = blogPosts.map((p, i) => ({ ...p, image: blogImages[i] }));
+  const updatedAt = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
+  res.render('index', {
+    displayCountries: buildDisplayCountries('en'), weatherLinkPrefix: '/weather/',
+    weatherMap, updatedAt, blogPosts: enrichedPosts, user: req.user || null,
+    lang: 'en', t: locales.en.ui, alternates: HOME_ALTERNATES,
+  });
+});
+
+// Localized homepages
+SUPPORTED_LANGS.forEach(lang => {
+  app.get(`/${lang}`, async (req, res) => {
+    const [weatherResults, blogImages] = await Promise.all([
+      Promise.all(countries.map(c => fetchWeather(c.lat, c.lon).catch(() => null))),
+      Promise.all((locales[lang].blogPosts || blogPosts).map(p => fetchCountryImage(p.wikiQuery || p.slug, p.wikiQuery || p.slug).catch(() => null))),
+    ]);
+    const weatherMap = {};
+    countries.forEach((c, i) => { weatherMap[c.slug] = weatherResults[i]; });
+    const rawPosts = locales[lang].blogPosts || blogPosts;
+    const enrichedPosts = rawPosts.map((p, i) => ({ ...p, image: blogImages[i] }));
+    const updatedAt = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
+    res.render('index', {
+      displayCountries: buildDisplayCountries(lang), weatherLinkPrefix: `/weather/${lang}/`,
+      weatherMap, updatedAt, blogPosts: enrichedPosts, user: req.user || null,
+      lang, t: locales[lang].ui, alternates: HOME_ALTERNATES,
+    });
+  });
+});
+
+// Search endpoint (JSON)
+app.get('/search', (req, res) => {
+  const q = (req.query.q || '').toLowerCase().trim();
+  if (!q) return res.json([]);
+  const results = countries
+    .filter(c =>
+      c.country.toLowerCase().includes(q) ||
+      c.capital.toLowerCase().includes(q)
+    )
+    .map(c => ({ name: c.country, capital: c.capital, flag: c.flag, slug: c.slug }));
+  res.json(results);
+});
+
+app.get('/blog', async (req, res) => {
+  const images = await Promise.all(
+    blogPosts.map(p => fetchCountryImage(p.wikiQuery, p.wikiQuery).catch(() => null))
+  );
+  const enriched = blogPosts.map((p, i) => ({ ...p, image: images[i] }));
+  res.render('blog-index', { blogPosts: enriched, user: req.user || null });
+});
+
+app.get('/blog/:slug', async (req, res) => {
+  const post = blogPosts.find(p => p.slug === req.params.slug);
+  if (!post) return res.status(404).send('<h1>404 – Post not found</h1><p><a href="/">Back to home</a></p>');
+  const image = await fetchCountryImage(post.wikiQuery, post.wikiQuery).catch(() => null);
+  res.render('blog-post', { post: { ...post, image }, user: req.user || null });
 });
 
 app.get('/weather/:slug', async (req, res) => {

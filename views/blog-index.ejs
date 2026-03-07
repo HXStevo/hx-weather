@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holiday Weather Blog | Holiday Extras</title>
+  <meta name="description" content="Travel tips, destination guides, and packing advice from the Holiday Extras weather team." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="https://dmy0b9oeprz0f.cloudfront.net/holidayextras.co.uk/favicon/96/recent.jpg" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <%- include('partials/header', { user }) %>
+
+  <section class="index-hero">
+    <div class="container">
+      <p class="hero-strapline">Less hassle. More holiday.</p>
+      <h1>Holiday Weather Blog</h1>
+      <p class="hero-sub">Travel tips, destination guides, and packing advice to help you plan a better trip.</p>
+    </div>
+  </section>
+
+  <main class="container blog-index-main">
+    <div class="blog-list">
+      <% blogPosts.forEach(post => { %>
+      <article class="blog-card">
+        <% if (post.image) { %>
+        <a href="/blog/<%= post.slug %>" class="blog-card__img-link">
+          <img src="<%- post.image %>" alt="<%= post.title %>" class="blog-card__img" loading="lazy" />
+        </a>
+        <% } %>
+        <div class="blog-card__body">
+          <p class="blog-card__category"><span class="blog-cat-icon"><%= post.categoryEmoji %></span><%= post.category %></p>
+          <h2 class="blog-card__title"><a href="/blog/<%= post.slug %>"><%= post.title %></a></h2>
+          <p class="blog-card__excerpt"><%= post.excerpt %></p>
+          <a href="/blog/<%= post.slug %>" class="blog-read-more">Read More</a>
+        </div>
+      </article>
+      <% }) %>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+</body>
+</html>

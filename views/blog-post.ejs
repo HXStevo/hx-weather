@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= post.title %> | Holiday Extras Weather</title>
+  <meta name="description" content="<%= post.excerpt %>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="https://dmy0b9oeprz0f.cloudfront.net/holidayextras.co.uk/favicon/96/recent.jpg" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <%- include('partials/header', { user }) %>
+
+  <!-- Hero -->
+  <section class="weather-hero<% if (post.image) { %> weather-hero--photo<% } %>"<% if (post.image) { %> style="--hero-img: url('<%- post.image %>')"<% } %>>
+    <div class="container">
+      <p class="hero-eyebrow"><%= post.categoryEmoji %> <%= post.category %></p>
+      <h1><%= post.title %></h1>
+      <p class="hero-location">Published <%= post.date %></p>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <section class="blog-post-section">
+    <div class="container">
+      <div class="blog-post-inner">
+        <a href="/blog" class="blog-back-link">← Back to Weather Blog</a>
+        <div class="blog-post-body">
+          <% post.body.forEach(para => { %>
+            <% if (para.startsWith('<h2>')) { %>
+              <%- para %>
+            <% } else { %>
+              <p><%= para %></p>
+            <% } %>
+          <% }) %>
+        </div>
+        <div class="blog-post-cta">
+          <a href="/weather/<%= post.relatedSlug %>" class="cta-button">Check live weather →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+
+</body>
+</html>
