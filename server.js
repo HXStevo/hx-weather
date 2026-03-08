@@ -16,8 +16,11 @@ const locales = {
   fr: require('./locales/fr'),
   es: require('./locales/es'),
   it: require('./locales/it'),
+  pl: require('./locales/pl'),
+  pt: require('./locales/pt'),
+  cs: require('./locales/cs'),
 };
-const SUPPORTED_LANGS = ['de', 'fr', 'es', 'it'];
+const SUPPORTED_LANGS = ['de', 'fr', 'es', 'it', 'pl', 'pt', 'cs'];
 const BASE_URL = process.env.BASE_URL || 'https://web-production-17f8.up.railway.app';
 
 function buildAlternates(englishSlug) {
@@ -254,6 +257,9 @@ const HOME_ALTERNATES = [
   { lang: 'fr', href: '/fr' },
   { lang: 'es', href: '/es' },
   { lang: 'it', href: '/it' },
+  { lang: 'pl', href: '/pl' },
+  { lang: 'pt', href: '/pt' },
+  { lang: 'cs', href: '/cs' },
 ];
 
 function buildDisplayCountries(lang) {

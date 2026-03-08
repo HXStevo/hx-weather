@@ -2841,3 +2841,133 @@ img {
     width: 100%;
   }
 }
+
+/* ===========================
+   Compact Weather Card + Date Picker
+   =========================== */
+.wc-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.wc-row .weather-card {
+  flex: 1;
+  max-width: none;
+  margin: 0;
+  padding: 1.4rem 1.75rem;
+  text-align: left;
+}
+
+.wc-top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.wc-row .weather-emoji {
+  font-size: 2.2rem;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.wc-row .weather-condition {
+  font-size: 1.05rem;
+  margin-bottom: 0;
+}
+
+.wc-stats-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.wcs-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.wcs-item strong {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+
+.wcs-lbl {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.wcs-dot {
+  color: var(--text-light);
+  font-size: 1rem;
+  padding-top: 0.35rem;
+  line-height: 1;
+}
+
+.wc-date-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.wc-date-lbl {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.wc-date-input {
+  padding: 0.65rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  background: var(--white);
+  min-height: 44px;
+}
+
+.wc-date-input:focus {
+  outline: none;
+  border-color: var(--hx-purple);
+  box-shadow: 0 0 0 3px rgba(87,28,131,0.1);
+}
+
+@media (max-width: 640px) {
+  .wc-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .wc-row .weather-card {
+    text-align: center;
+  }
+
+  .wc-top {
+    justify-content: center;
+  }
+
+  .wc-stats-line {
+    justify-content: center;
+  }
+
+  .wc-date-picker {
+    align-items: center;
+  }
+}

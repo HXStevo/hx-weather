@@ -32,7 +32,7 @@
   <div class="lang-bar">
     <div class="container">
       <div class="lang-switcher">
-        <% var langMeta = { en: { flag: '🇬🇧', label: 'EN' }, de: { flag: '🇩🇪', label: 'DE' }, fr: { flag: '🇫🇷', label: 'FR' }, es: { flag: '🇪🇸', label: 'ES' }, it: { flag: '🇮🇹', label: 'IT' } }; %>
+        <% var langMeta = { en: { flag: '🇬🇧', label: 'EN' }, de: { flag: '🇩🇪', label: 'DE' }, fr: { flag: '🇫🇷', label: 'FR' }, es: { flag: '🇪🇸', label: 'ES' }, it: { flag: '🇮🇹', label: 'IT' }, pl: { flag: '🇵🇱', label: 'PL' }, pt: { flag: '🇵🇹', label: 'PT' }, cs: { flag: '🇨🇿', label: 'CS' } }; %>
         <span class="lang-switcher__label"><%= t.switchLanguage %></span>
         <% alternates.forEach(function(a) { var lm = langMeta[a.lang] || { flag: '', label: a.lang.toUpperCase() }; %>
           <a href="<%= a.href %>" class="lang-pill<%= (a.lang === (locals.lang || 'en')) ? ' lang-pill--active' : '' %>" hreflang="<%= a.lang %>"><%= lm.flag %> <%= lm.label %></a>
@@ -68,26 +68,36 @@
   <!-- Weather Snapshot -->
   <section class="weather-snapshot-section">
     <div class="container">
-      <div class="weather-card">
-        <div class="weather-emoji" id="wc-emoji"><%= weather.emoji %></div>
-        <div class="weather-condition" id="wc-condition"><%= weather.condition %></div>
-        <div class="weather-stats">
-          <div class="weather-stat">
-            <span class="stat-value" id="wc-temp"><%= weather.temperature %>°C</span>
-            <span class="stat-label" id="wc-temp-label"><%= t.temperature %></span>
+      <div class="wc-row">
+        <div class="weather-card">
+          <div class="wc-top">
+            <span class="weather-emoji" id="wc-emoji"><%= weather.emoji %></span>
+            <span class="weather-condition" id="wc-condition"><%= weather.condition %></span>
           </div>
-          <div class="weather-stat-divider"></div>
-          <div class="weather-stat">
-            <span class="stat-value" id="wc-rain"><%= weather.precipProbability %>%</span>
-            <span class="stat-label"><%= t.rainChance %></span>
+          <div class="wc-stats-line">
+            <span class="wcs-item">
+              <strong id="wc-temp"><%= weather.temperature %>°C</strong>
+              <span class="wcs-lbl" id="wc-temp-label"><%= t.temperature %></span>
+            </span>
+            <span class="wcs-dot">·</span>
+            <span class="wcs-item">
+              <strong id="wc-rain"><%= weather.precipProbability %>%</strong>
+              <span class="wcs-lbl"><%= t.rainChance %></span>
+            </span>
+            <span class="wcs-dot">·</span>
+            <span class="wcs-item">
+              <strong id="wc-wind"><%= weather.windSpeed %> km/h</strong>
+              <span class="wcs-lbl"><%= t.windSpeed %></span>
+            </span>
           </div>
-          <div class="weather-stat-divider"></div>
-          <div class="weather-stat">
-            <span class="stat-value" id="wc-wind"><%= weather.windSpeed %> km/h</span>
-            <span class="stat-label"><%= t.windSpeed %></span>
-          </div>
+          <p class="weather-updated" id="wc-updated"><%= t.updatedLive %></p>
         </div>
-        <p class="weather-updated" id="wc-updated"><%= t.updatedLive %></p>
+        <% if (weather.forecast7day && weather.forecast7day.length) { %>
+        <div class="wc-date-picker">
+          <label class="wc-date-lbl" for="holiday-date">Your holiday date</label>
+          <input type="date" id="holiday-date" class="wc-date-input" />
+        </div>
+        <% } %>
       </div>
     </div>
   </section>
@@ -249,17 +259,6 @@
   </section>
   <% } %>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container cta-inner">
-      <h2><%= t.readyToBook %> <%= country.country %><%= t.readyToBookSuffix %></h2>
-      <p><%= t.lessHassle %></p>
-      <a href="<%= country.ctaUrl %>" class="cta-button" target="_blank" rel="noopener">
-        <%= t.findAirportHotels %> <%= country.country %><%= t.findAirportHotelsSuffix %>
-      </a>
-    </div>
-  </section>
-
   <script>
     (function () {
       const todayData = {
@@ -278,6 +277,7 @@
         dateLabel: '<%= weather.dateLabel %>',
       };
       const forecast7day = <%- JSON.stringify(weather.forecast7day || []) %>;
+      window._forecast7day = forecast7day;
 
       window.selectDay = function (i) {
         // Update tab active state
@@ -322,6 +322,27 @@
           document.getElementById('fdp-note').textContent = day.condition + ' · ' + day.precipProbability + '% rain · ' + day.windSpeed + ' km/h wind';
         }
       };
+
+      // Holiday date picker
+      const holidayDateInput = document.getElementById('holiday-date');
+      if (holidayDateInput && forecast7day.length) {
+        holidayDateInput.value = forecast7day[0].date;
+        holidayDateInput.min = forecast7day[0].date;
+        holidayDateInput.max = forecast7day[forecast7day.length - 1].date;
+        holidayDateInput.addEventListener('change', function () {
+          const idx = forecast7day.findIndex(function (d) { return d.date === this.value; }, this);
+          if (idx !== -1) selectDay(idx);
+        });
+        holidayDateInput.addEventListener('click', function () {
+          try { this.showPicker(); } catch (e) {}
+        });
+        // Keep date picker in sync when clicking forecast strip
+        const origSelectDay = window.selectDay;
+        window.selectDay = function (i) {
+          origSelectDay(i);
+          if (forecast7day[i]) holidayDateInput.value = forecast7day[i].date;
+        };
+      }
     })();
   </script>
 

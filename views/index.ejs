@@ -50,7 +50,7 @@
   <div class="lang-bar">
     <div class="container">
       <div class="lang-switcher">
-        <% var langMeta = { en: { flag: '🇬🇧', label: 'EN' }, de: { flag: '🇩🇪', label: 'DE' }, fr: { flag: '🇫🇷', label: 'FR' }, es: { flag: '🇪🇸', label: 'ES' }, it: { flag: '🇮🇹', label: 'IT' } }; %>
+        <% var langMeta = { en: { flag: '🇬🇧', label: 'EN' }, de: { flag: '🇩🇪', label: 'DE' }, fr: { flag: '🇫🇷', label: 'FR' }, es: { flag: '🇪🇸', label: 'ES' }, it: { flag: '🇮🇹', label: 'IT' }, pl: { flag: '🇵🇱', label: 'PL' }, pt: { flag: '🇵🇹', label: 'PT' }, cs: { flag: '🇨🇿', label: 'CS' } }; %>
         <span class="lang-switcher__label"><%= locals.t ? t.switchLanguage : 'Switch language:' %></span>
         <% alternates.forEach(function(a) { var lm = langMeta[a.lang] || { flag: '', label: a.lang.toUpperCase() }; %>
           <a href="<%= a.href %>" class="lang-pill<%= (a.lang === (locals.lang || 'en')) ? ' lang-pill--active' : '' %>" hreflang="<%= a.lang %>"><%= lm.flag %> <%= lm.label %></a>
@@ -62,12 +62,6 @@
 
   <!-- Local Weather + Trip Search -->
   <section class="local-weather-section">
-    <div class="local-weather-section__header">
-      <div class="container local-weather-section__header-inner">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="currentColor"/></svg>
-        <h2><%= locals.t ? t.planYourHoliday : 'Plan Your Next Holiday' %></h2>
-      </div>
-    </div>
     <div class="container local-weather-row">
 
       <!-- Weather card: only shown when geolocation is granted -->
@@ -121,21 +115,6 @@
             <option value="SNN">Shannon SNN</option>
             <option value="SOU">Southampton SOU</option>
             <option value="MME">Teesside MME</option>
-          </select>
-        </div>
-
-        <div class="trip-search__field">
-          <label class="trip-search__label" for="ts_adults">Passengers</label>
-          <select id="ts_adults" class="trip-search__select">
-            <option value="1">1 adult</option>
-            <option value="2" selected>2 adults</option>
-            <option value="3">3 adults</option>
-            <option value="4">4 adults</option>
-            <option value="5">5 adults</option>
-            <option value="6">6 adults</option>
-            <option value="7">7 adults</option>
-            <option value="8">8 adults</option>
-            <option value="9">9 adults</option>
           </select>
         </div>
 
@@ -342,10 +321,20 @@
     // Trip search: set default dates and handle form submit → HX parking URL
     (function () {
       const today = new Date();
-      const ret = new Date(today); ret.setDate(ret.getDate() + 7);
+      const ret = new Date(today); ret.setDate(ret.getDate() + 8);
       const fmt = d => d.toISOString().split('T')[0];
-      document.getElementById('ts_depart').value = fmt(today);
-      document.getElementById('ts_return').value = fmt(ret);
+      const departInput = document.getElementById('ts_depart');
+      const returnInput = document.getElementById('ts_return');
+      departInput.value = fmt(today);
+      returnInput.value = fmt(ret);
+
+      // When depart date changes, set return to depart + 8 days
+      departInput.addEventListener('change', function () {
+        if (!this.value) return;
+        const d = new Date(this.value + 'T12:00:00');
+        d.setDate(d.getDate() + 8);
+        returnInput.value = fmt(d);
+      });
 
       // Make whole date input open the picker on click
       document.querySelectorAll('.trip-search__date').forEach(function (input) {
@@ -358,14 +347,13 @@
       document.getElementById('trip-search-form').addEventListener('submit', function (e) {
         e.preventDefault();
         const airport  = document.getElementById('ts_airport').value;
-        const outDate  = document.getElementById('ts_depart').value;   // departure (park from)
-        const inDate   = document.getElementById('ts_return').value;    // return    (park to)
-        const adults   = document.getElementById('ts_adults').value;
+        const outDate  = departInput.value;   // departure (park from)
+        const inDate   = returnInput.value;    // return    (park to)
         const lang     = '<%= locals.lang || "en" %>';
         const base     = 'https://www.holidayextras.com/static/?selectProduct=cp&';
         const fragment = '/categories?agent=WY992&ppts=&customer_ref='
           + '&lang=' + lang
-          + '&adults=' + adults
+          + '&adults=2'
           + '&depart=' + airport
           + '&terminal=&arrive=&flight='
           + '&in=' + inDate
